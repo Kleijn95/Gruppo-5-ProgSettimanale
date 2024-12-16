@@ -34,3 +34,52 @@ section > p{
     color: #c2128c;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#promise {
+    
+    
+    border: 2px solid white;
+}
+.agreement p {
+    display: inline-block;
+}
+
+.proceed {background-color: #00FFFF;
+color: black;
+font-weight: bold;
+padding: 10px 40px;
+margin-left: 14rem;
+border: none;
+cursor: pointer;
+box-shadow: 0px 0px 20px 5px rgba(0, 231, 255, 0.6)
+
+}
