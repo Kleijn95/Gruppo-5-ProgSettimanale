@@ -3,9 +3,9 @@
 body{
     background-image: url("../img/bg.jpg");
     color: white;
-    font-family: "Outfit", sans-serif;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-left: 10%;
    
     
 
@@ -25,32 +25,62 @@ header .logo {
     display: inline-block;
 }
 
+
+
 section h1{
     font-weight: 300;
     font-size: 60px;
-    padding-bottom: 0%;
+    display: inline-block;
+    font-family: "Outfit", sans-serif;
+    
+    
+}
+
+section h2{
+    font-weight: 700;
+    font-size: 60px;
+    margin-top: -1%;
+    font-family: "Outfit", sans-serif;
+    padding-bottom: 2rem
+
+    
 }
 
 section p{
-
     font-weight: 700;
-    font-size: 60px;
+    font-size: 16px;
+    font-weight: 200;
+    font-family: "Inter", sans-serif;
 }
 
 #istruction{
-    background: -webkit-linear-gradient(140deg, #ff005d, #c700ff);
+    background: -webkit-linear-gradient(#ff005d, #c700ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    padding-bottom: 2%;
+
+}
+
+ul{
+    font-weight: 700;
     font-size: 16px;
+    font-weight: 200;
+    font-family: "Inter", sans-serif;
+    list-style-type: disc;
 
 }
 
 #promise {
     border: 2px solid white;
+
 }
 
 .agreement p {
     display: inline-block;
+    font-family: "Inter", sans-serif;
 }
 
 .proceed {background-color: #00FFFF;
