@@ -5,19 +5,19 @@ body{
     color: white;
     font-family: "Outfit", sans-serif;
     background-repeat: no-repeat;
+    margin:10%;
 
 }
 
 header{
     display: inline-block;
-    width: 100%;
-    min-height: 100%;
-    margin: 1%;
-    padding: 1%;
+    width: 40%;
+    
+    
 }
 
 header .logo {
-    width: 50%;
+    width: 30%;
     height: 40px;
     background-image: url("../img/epicode_logo.png");
     background-size: contain;
@@ -25,14 +25,27 @@ header .logo {
     display: inline-block;
 }
 
-section > p{
-    font-weight: bold;
+section h1{
+    font-weight: 300;
+    font-size: 60px;
+    padding-bottom: 0%;
+}
 
+section p{
+
+    font-weight: 700;
+    font-size: 60px;
 }
 
 #istruction{
-    color: #c2128c;
+    background: -webkit-linear-gradient(140deg, #ff005d, #c700ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 16px;
+
 }
+
+
 
 
 
