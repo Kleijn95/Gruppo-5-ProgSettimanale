@@ -4,30 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet"  href="./Assets/Css/css.css">
 </head>
 <body>
     <header>
-        <!--<div class="logo"></div>-->
-        <div> <img src="./Assets/img/epicode_logo.png"/></div> 
+        <div class="logo"></div>
     </header>
     <main>
         <section>
-            <h1>Welcome to your exam</h1>
-            <h3>Instructions</h3>
+            <h1>Welcome to</h1>
+            <p>your exam</p>
+            <h3 id="istruction">Instructions</h3>
             <p>We don't expect most engineers to know the answers to all of these
                 questions, so don't worry if you're unsure of a few of them.</p>
                 <ul>
-                
+                <li>Each question is <strong>timed</strong> and can only be <strong>answered once</strong></li>
+                <li>Changing browser tab or opening other windows will <strong>invalidate the question</strong></li>
+                <li> This exam will take approx. <strong>0-5 minutes</strong></li>
                 </ul>
         </section>
-        <div>
+        <div class="agreement">
             <div>
-                <span>check</span>
-                <span>I promise to answer mvself without help from anvone</span>
-            </div>
-            <div><!--button--></div>
-            
+                <input type="checkbox" id="promise">
+                <p>I promise to answer myself without help from anyone</p>
+            <button class="proceed">PROCEED</button>
         </div>
     </main>
 
