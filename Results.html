@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./Assets/Css/Reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet"  href="./Assets/Css/css.css">
 </head>
 <body>
@@ -16,9 +21,26 @@
             <p>The Summary of your answers:</p>
         </nav>
         <section>
-            <div id="Correct"><!--Correct--></div>
-            <div id="resultsTable"><!--Table "Congratulatios"--></div>
-            <div id="wrong"><!--Wrong --></div>
+  <table>
+     <thead>
+
+           <tr>
+              <td>Correct</td>
+              <td id="percentualeGiuste">0%</td>
+           </tr>
+   
+         <tbody>
+             <tr>Congratulations! <br>You passed the exam <br> <p>We'll send you the certificatein few minutes. Check your email (inlcuding promotions / spam folder) </p></tr>
+             <tr>Failed</tr>
+         </tbody>
+
+          <tr>
+             <td>Wrong</td>
+             <td id="percentualeSbagliate">0%</td>
+          </tr>
+
+     </thead> 
+  </table>
 
     </section> 
      </main>
