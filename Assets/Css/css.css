@@ -1,17 +1,27 @@
+
+
 body{
     background-image: url("../img/bg.jpg");
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+    background-repeat: no-repeat;
 
 }
 
 header{
     display: inline-block;
     width: 100%;
-    min-height: 50%;
+    min-height: 100%;
     margin: 1%;
-    padding: 40%;
+    padding: 1%;
 }
 
-
+header .logo {
+    width: 50%;
+    height: 40px;
+    background-image: url("../img/epicode_logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
 
