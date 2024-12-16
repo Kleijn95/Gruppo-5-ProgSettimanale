@@ -5,15 +5,15 @@ body{
     color: white;
     font-family: "Outfit", sans-serif;
     background-repeat: no-repeat;
-    margin:10%;
+    background-size: cover;
+   
+    
 
 }
 
 header{
     display: inline-block;
     width: 40%;
-    
-    
 }
 
 header .logo {
@@ -45,43 +45,10 @@ section p{
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #promise {
-    
-    
     border: 2px solid white;
 }
+
 .agreement p {
     display: inline-block;
 }
@@ -90,7 +57,6 @@ section p{
 color: black;
 font-weight: bold;
 padding: 10px 40px;
-margin-left: 14rem;
 border: none;
 cursor: pointer;
 box-shadow: 0px 0px 20px 5px rgba(0, 231, 255, 0.6)
