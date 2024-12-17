@@ -111,7 +111,8 @@ let currentAnswerIndex = 0;
 let score = 0;
 let timer;
 let timerDuration= 60;
-
+let punteggio = localStorage.getItem("score")
+punteggio = parseInt(punteggio);
 
 if (document.location.pathname === "/Welcome.html") {
   proceed()                                                             // Funzioni Pagina Welcome
@@ -125,11 +126,20 @@ if (document.location.pathname === "/Test.html") {
   startTimer()
 }
 
+if (document.location.pathname === "/Results.html") {
+  punteggioPercentuale()
+  risposteErrate() 
+  risposteErratePercentuale()
+  rateUs()
+  results()
+}
 
 
-
-
-
+function rateUs() {
+  let rateUs = document.querySelector("#rateUs")
+  rateUs.addEventListener("click", function(){
+    window.location.href = "http://127.0.0.1:5500/Review.html"})}
+   
 
 function proceed() {
   let checkBox = document.querySelector("#promise")
@@ -145,7 +155,41 @@ function proceed() {
 
 
 
+function punteggioPercentuale() {
+let valoreTotale = 10;
+let valoreScore = punteggio
+let risultatoA = (valoreScore/valoreTotale)*100
+return risultatoA
+}
 
+function risposteErrate() {
+  let valoreTotale = 10
+  let valoreScore = punteggio
+  let risultatoB = (valoreTotale - valoreScore)
+  return risultatoB
+}
+
+function risposteErratePercentuale() {
+  let valoreTotale = 10;
+  let valoreScore = punteggio
+  let risultatoC = ((valoreTotale-valoreScore)/valoreTotale)*100;
+  return risultatoC
+}
+
+
+function results() {
+  let correctPerc = document.querySelector("#punteggioPercentuale")
+  let correctNum = document.querySelector("#score")
+  let wrongPerc = document.querySelector("#risposteErratePercentuale")
+  let wrongNum = document.querySelector("#risposteErrate")
+  let risultatoA = punteggioPercentuale();
+  let risultatoB = risposteErrate();
+  let risultatoC = risposteErratePercentuale();
+  correctPerc.innerText = `${risultatoA}%`
+  correctNum.innerText = `${punteggio}/10`
+  wrongPerc.innerText = `${risultatoC}%`
+  wrongNum.innerText = `${risultatoB}/10`
+}
 
 
 
