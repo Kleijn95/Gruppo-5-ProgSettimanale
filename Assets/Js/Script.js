@@ -284,7 +284,8 @@ function createRisposte() {
       let answer = tutteLeRisposte[currentAnswerIndex][i]; 
       let button = document.createElement("button");
       button.innerText = answer;
-      
+
+      button.classList.add("bottone")
       
       button.onclick = () => { 
        /* let selectedAnswer = tutteLeRisposte[currentAnswerIndex];
