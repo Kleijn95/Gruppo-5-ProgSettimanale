@@ -109,6 +109,17 @@ const tutteLeRisposte=[];  //Questo contiene tutte le risposte
 let currentQuestionIndex = 0;
 let currentAnswerIndex = 0;
 let score = 0;
+let timer;
+let timerDuration= 60;
+
+
+
+if (document.location.pathname === "/Test.html") {
+  estrazione(questions);
+  createDomanda(questions)
+  createRisposte();
+  startTimer()
+}
 
 
 //Estrae domande e risposte dall'array
@@ -122,7 +133,7 @@ function estrazione(){
   }
 }
 
-estrazione(questions);
+
 
 /*
   console.log(domande)// qui abbiamo l'array con l'elenco delle domande
@@ -140,7 +151,7 @@ function createDomanda() {   // Funzione per mostrare una domanda
     
 }
 
-createDomanda(questions)
+
 
 
 
@@ -169,12 +180,13 @@ function createRisposte() {
 }
 }
 
-createRisposte();
+
 
 
 function checkAnswer(selectedAnswer){
 if( selectedAnswer === risposteEsatte[currentQuestionIndex]){
    score++;
+   localStorage.setItem("score", score)
 }
  currentAnswerIndex++;
  currentQuestionIndex++;
@@ -188,8 +200,6 @@ if( selectedAnswer === risposteEsatte[currentQuestionIndex]){
  }
 } 
 
-let timer;
-let timerDuration= 60;
 
 function startTimer() {
   clearInterval(timer)
@@ -206,4 +216,3 @@ function startTimer() {
 }, 1000)
 }
 
-startTimer()
