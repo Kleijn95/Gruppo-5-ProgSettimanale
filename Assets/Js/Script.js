@@ -137,6 +137,7 @@ function createDomanda() {   // Funzione per mostrare una domanda
     let domanda = document.createElement('div');  // Crea un nuovo elemento per la domanda
     domanda.innerText = questions[currentQuestionIndex].question;
     container.appendChild(domanda);  // Aggiungi l'elemento domanda al contenitore
+    
 }
 
 createDomanda(questions)
@@ -179,15 +180,32 @@ function checkAnswer(selectedAnswer){
    currentQuestionIndex++;
 
    if(currentQuestionIndex < domande.length){
-
+    
     createDomanda();
     createRisposte();
+    startTimer();
    }
 } 
 
+let timer;
+let timerDuration= 60;
 
+function startTimer() {
+  clearInterval(timer)
+  timerDuration= 60;
+ let tempo = document.querySelector('.timer')
+ tempo.innerText = timerDuration
+timer = setInterval(function() {
+  timerDuration--;
+  document.querySelector('.timer').innerText = timerDuration;
+ if (timerDuration<=0) {
+  clearInterval(timer)
+   checkAnswer();
+ }
+}, 1000)
+}
 
-
+startTimer()
 
 
 
