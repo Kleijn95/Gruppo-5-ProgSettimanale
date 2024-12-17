@@ -99,41 +99,37 @@ const questions = [
     },
   ];
 
-  function creaDomanda(){
+  //CSS
 
-  }
-
-
-  
-
-    //let domande = document.querySelector('.questions')
-
-
+//Dichiarazione delle variabili
 const domande=[];
 const risposteEsatte=[];
 const risposteSbagliate=[];
 const tutteLeRisposte=[];  //Questo contiene tutte le risposte
+let currentQuestionIndex = 0;
+let currentAnswerIndex = 0;
+let score = 0;
+
 
 //Estrae domande e risposte dall'array
 
+function estrazione(){
     for(let i=0; i<questions.length; i++){
       domande.push(questions[i].question);
       risposteEsatte.push(questions[i].correct_answer);
       risposteSbagliate.push(questions[i].incorrect_answers);
       tutteLeRisposte.push([questions[i].correct_answer, ...questions[i].incorrect_answers]);
     }
+  }
 
+  estrazione();
+
+  /*
     console.log(domande)// qui abbiamo l'array con l'elenco delle domande
     console.log(risposteEsatte)
     console.log(risposteSbagliate)
-    console.log(tutteLeRisposte)
+    console.log(tutteLeRisposte)*/
 
-
-    
-
-
-
-let currentQuestionIndex = 0;
 
 function createDomanda() {   // Funzione per mostrare una domanda
     let container = document.querySelector('.questions');
@@ -147,10 +143,9 @@ createDomanda(questions)
 
 
 
-let currentAnswerIndex = 0;
 
 function createRisposte() {   
-    let buttonContainer = document.querySelector(".buttonContainer"); // Assicurati di selezionare solo un contenitore
+    let buttonContainer = document.querySelector(".buttonContainer"); 
     buttonContainer.innerHTML = '';  // Svuota il contenitore prima di aggiungere nuovi pulsanti
     // Crea un pulsante per ogni risposta
     tutteLeRisposte[currentAnswerIndex].sort(()=> Math.random() - 0.5);
@@ -167,10 +162,7 @@ function createRisposte() {
         button.onclick = () => { 
          /* let selectedAnswer = tutteLeRisposte[currentAnswerIndex];
           console.log("Risposta selezionata:", selectedAnswer);*/
-    
-          checkAnswer(answer); 
-          
-        
+          checkAnswer(answer);    
     }
         buttonContainer.appendChild(button);
   }
@@ -179,7 +171,6 @@ function createRisposte() {
 createRisposte();
 
 
-let score =0
 function checkAnswer(selectedAnswer){
   if( selectedAnswer === risposteEsatte[currentQuestionIndex]){
      score++;
@@ -195,11 +186,7 @@ function checkAnswer(selectedAnswer){
 } 
 
 
-/*button = document.querySelector("button")
-button.addEventListener("click", () => {
-  createRisposte++;
-  createDomanda++;
-});*/
+
 
 
 
