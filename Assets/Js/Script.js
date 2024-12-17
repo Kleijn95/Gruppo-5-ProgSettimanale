@@ -99,7 +99,7 @@ const questions = [
     },
   ];
 
-  //CSS
+//CSS
 
 //Dichiarazione delle variabili
 const domande=[];
