@@ -113,13 +113,44 @@ let timer;
 let timerDuration= 60;
 
 
+if (document.location.pathname === "/Welcome.html") {
+  proceed()                                                             // Funzioni Pagina Welcome
+}
+
 
 if (document.location.pathname === "/Test.html") {
   estrazione(questions);
-  createDomanda(questions)
+  createDomanda(questions)                                // Funzioni Pagina TEST
   createRisposte();
   startTimer()
 }
+
+
+
+
+
+
+
+function proceed() {
+  let checkBox = document.querySelector("#promise")
+  let buttonProceed = document.querySelector(".proceed")
+  buttonProceed.addEventListener("click", function(){
+    if (checkBox.checked) {
+    window.location.href = "http://127.0.0.1:5500/Test.html"}
+    else {
+      alert ("Spunta la checkbox")
+    }
+  })
+}
+
+
+
+
+
+
+
+
+
 
 
 //Estrae domande e risposte dall'array

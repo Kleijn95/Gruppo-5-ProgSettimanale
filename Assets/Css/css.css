@@ -82,7 +82,7 @@ span {
     padding-top: 5rem;
 }
 
-#promise {
+ #promise {
     border: 2px solid white;
     padding: 0.5rem;
     vertical-align: middle;
@@ -90,7 +90,7 @@ span {
     background: inherit;
     appearance: none;
     background-color: transparent;
-}
+} 
 
 .agreement p {
     display: inline-block;
@@ -111,6 +111,18 @@ span {
     font-size: 1.2rem;
 }
 
+/* input[type='checkbox'] {
+    clip: rect(1px, 1px, 1px, 1px);
+   
+}
+
+input[type='checkbox'] + label {
+    cursor: pointer;
+}
+
+input[type='checkbox']:checked + label {
+    background-image: url('https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787_1280.png')
+} */
 
 #reviewPage {
     text-align: center;
