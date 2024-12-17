@@ -153,33 +153,53 @@ function createRisposte() {
     let buttonContainer = document.querySelector(".buttonContainer"); // Assicurati di selezionare solo un contenitore
     buttonContainer.innerHTML = '';  // Svuota il contenitore prima di aggiungere nuovi pulsanti
     // Crea un pulsante per ogni risposta
-    tutteLeRisposte[currentAnswerIndex].sort(()=> Math.random() - 0.5);}
+    tutteLeRisposte[currentAnswerIndex].sort(()=> Math.random() - 0.5);
 
     /* let risposteMescolate = [...tutteLeRisposte[currentAnswerIndex]];
     risposteMescolate.sort(() => Math.random() - 0.5);*/
 
     for (let i = 0; i < tutteLeRisposte[currentAnswerIndex].length; i++) {
+        let answer = tutteLeRisposte[currentAnswerIndex][i]; 
         let button = document.createElement("button");
+        button.innerText = answer;
         
-        button.innerText = tutteLeRisposte[currentAnswerIndex][i];  // Imposta il testo del pulsante con la risposta
-        buttonContainer.appendChild(button);  // Aggiungi il pulsante al contenitore
+        
+        button.onclick = () => { 
+         /* let selectedAnswer = tutteLeRisposte[currentAnswerIndex];
+          console.log("Risposta selezionata:", selectedAnswer);*/
+    
+          checkAnswer(answer); 
+          
+        
     }
-
-    button.onclick = () => {
-      let selectedAnswer = tutteLeRisposte[i]; // La risposta selezionata
-      console.log("Risposta selezionata:", selectedAnswer);
-
-      checkAnswer(selectedAnswer); // Passiamo la risposta a una funzione di controllo
+        buttonContainer.appendChild(button);
+  }
 }
 
 createRisposte();
 
 
-button = document.querySelector("button")
+let score =0
+function checkAnswer(selectedAnswer){
+  if( selectedAnswer === risposteEsatte[currentQuestionIndex]){
+     score++;
+  }
+   currentAnswerIndex++;
+   currentQuestionIndex++;
+
+   if(currentQuestionIndex < domande.length){
+
+    createDomanda();
+    createRisposte();
+   }
+} 
+
+
+/*button = document.querySelector("button")
 button.addEventListener("click", () => {
   createRisposte++;
   createDomanda++;
-});
+});*/
 
 
 
