@@ -128,6 +128,11 @@ const tutteLeRisposte=[];  //Questo contiene tutte le risposte
     console.log(risposteSbagliate)
     console.log(tutteLeRisposte)
 
+
+    
+
+
+
 let currentQuestionIndex = 0;
 
 function createDomanda() {   // Funzione per mostrare una domanda
@@ -148,7 +153,7 @@ function createRisposte() {
     let buttonContainer = document.querySelector(".buttonContainer"); // Assicurati di selezionare solo un contenitore
     buttonContainer.innerHTML = '';  // Svuota il contenitore prima di aggiungere nuovi pulsanti
     // Crea un pulsante per ogni risposta
-    tutteLeRisposte[currentAnswerIndex].sort(()=> Math.random() - 0.5);
+    tutteLeRisposte[currentAnswerIndex].sort(()=> Math.random() - 0.5);}
 
     /* let risposteMescolate = [...tutteLeRisposte[currentAnswerIndex]];
     risposteMescolate.sort(() => Math.random() - 0.5);*/
@@ -159,16 +164,22 @@ function createRisposte() {
         button.innerText = tutteLeRisposte[currentAnswerIndex][i];  // Imposta il testo del pulsante con la risposta
         buttonContainer.appendChild(button);  // Aggiungi il pulsante al contenitore
     }
+
+    button.onclick = () => {
+      let selectedAnswer = tutteLeRisposte[i]; // La risposta selezionata
+      console.log("Risposta selezionata:", selectedAnswer);
+
+      checkAnswer(selectedAnswer); // Passiamo la risposta a una funzione di controllo
 }
 
 createRisposte();
 
 
+button = document.querySelector("button")
 button.addEventListener("click", () => {
-    createRisposte++;
-    createDomanda++;
+  createRisposte++;
+  createDomanda++;
 });
-
 
 
 
