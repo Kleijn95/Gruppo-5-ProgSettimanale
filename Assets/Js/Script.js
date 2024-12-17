@@ -128,11 +128,6 @@ const tutteLeRisposte=[];  //Questo contiene tutte le risposte
     console.log(risposteSbagliate)
     console.log(tutteLeRisposte)
 
-
-    
-
-
-
 let currentQuestionIndex = 0;
 
 function createDomanda() {   // Funzione per mostrare una domanda
@@ -168,9 +163,7 @@ function createRisposte() {
 
 createRisposte();
 
-button.addEventListener("click", (
-    
-))
+
 
 
 
