@@ -113,16 +113,14 @@ let score = 0;
 
 //Estrae domande e risposte dall'array
 
-function estrazione(){
+
     for(let i=0; i<questions.length; i++){
       domande.push(questions[i].question);
       risposteEsatte.push(questions[i].correct_answer);
       risposteSbagliate.push(questions[i].incorrect_answers);
       tutteLeRisposte.push([questions[i].correct_answer, ...questions[i].incorrect_answers]);
     }
-  }
 
-  estrazione();
 
   /*
     console.log(domande)// qui abbiamo l'array con l'elenco delle domande
