@@ -163,7 +163,9 @@ function createRisposte() {
 
 createRisposte();
 
-
+button.addEventListener("click", (
+    
+))
 
 
 

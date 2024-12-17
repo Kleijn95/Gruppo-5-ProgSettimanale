@@ -1,17 +1,15 @@
-
-
-body{
+body {
     background-image: url("../img/bg.jpg");
     color: white;
     background-repeat: no-repeat;
     background-size: cover;
     margin-left: 10%;
-   
-    
+
+
 
 }
 
-header{
+header {
     display: inline-block;
     width: 40%;
 }
@@ -29,33 +27,31 @@ header .logo {
 
 
 
-section h1{
+section h1 {
     font-weight: 300;
     font-size: 60px;
     display: inline-block;
     font-family: "Outfit", sans-serif;
-    
-    
+
+
 }
 
-section h2{
+section h2 {
     font-weight: 700;
     font-size: 60px;
     margin-top: -1%;
     font-family: "Outfit", sans-serif;
     padding-bottom: 2rem
-
-    
 }
 
-section p{
+section p {
     font-weight: 700;
     font-size: 16px;
     font-weight: 200;
     font-family: "Inter", sans-serif;
 }
 
-#istruction{
+#istruction {
     background: -webkit-linear-gradient(#ff005d, #c700ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -66,7 +62,7 @@ section p{
 
 }
 
-ul{
+ul {
     font-weight: 700;
     font-size: 16px;
     font-weight: 200;
@@ -83,6 +79,7 @@ span {
 .agreement {
     padding-top: 5rem;
 }
+
 #promise {
     border: 2px solid white;
     padding: 0.5rem;
@@ -100,13 +97,78 @@ span {
     vertical-align: middle
 }
 
-.proceed {background-color: #00FFFF;
-color: black;
-font-weight: bold;
-padding: 10px 40px;
-border: none;
-cursor: pointer;
-box-shadow: 0px 0px 20px 5px rgba(0, 231, 255, 0.6);
-margin-left: 10rem;
-font-size: 1.2rem;
+.proceed {
+    background-color: #00FFFF;
+    color: black;
+    font-weight: bold;
+    padding: 10px 40px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 5px rgba(0, 231, 255, 0.6);
+    margin-left: 10rem;
+    font-size: 1.2rem;
 }
+
+
+#reviewPage {
+    text-align: center;
+}
+
+#reviewPage h4 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-family: "Outfit", sans-serif;
+}
+
+#reviewPage p {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    font-family: "Inter", sans-serif;
+}
+
+textarea {
+    width: 30%;
+
+    margin: 20px auto;
+    color: white;
+    font-family: "Inter", sans-serif;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #ff00ff;
+    font-size: 1rem;
+    resize: none;
+    height: 40px;
+    transition: border-color 0.3s ease;
+    line-height: 40px;
+    padding: 0;
+}
+
+textarea::placeholder {
+    color: #aaaaaa;
+    padding-left: 1rem;
+
+}
+
+footer {
+    text-align: center;
+}
+
+footer input {
+    background-color: #00FFFF;
+    color: black;
+    font-weight: bold;
+    padding: 15px 40px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 5px rgba(0, 231, 255, 0.6);
+    font-size: 1.2rem;
+    }   
+    .reviewP {
+        margin-top: 3rem;
+    }
+
+    .inactive {
+        fill: #2E2E4B;
+        filter: brightness(0.1);}
