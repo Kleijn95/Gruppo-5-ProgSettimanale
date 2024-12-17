@@ -186,3 +186,18 @@ footer input {
     .inactive {
         fill: #2E2E4B;
         filter: brightness(0.1);}
+
+
+        .btn-prosegui {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+          }
+          
+          .btn-prosegui:hover {
+            background-color: #45a049;
+          }

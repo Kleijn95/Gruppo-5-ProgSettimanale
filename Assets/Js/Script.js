@@ -113,6 +113,9 @@ let timer;
 let timerDuration= 60;
 let punteggio = localStorage.getItem("score")
 punteggio = parseInt(punteggio);
+let risultatoA = punteggioPercentuale();
+  let risultatoB = risposteErrate();
+  let risultatoC = risposteErratePercentuale();
 
 if (document.location.pathname === "/Welcome.html") {
   proceed()                                                             // Funzioni Pagina Welcome
@@ -132,7 +135,15 @@ if (document.location.pathname === "/Results.html") {
   risposteErratePercentuale()
   rateUs()
   results()
+  esitoTest()
 }
+
+
+
+
+
+
+
 
 
 function rateUs() {
@@ -182,16 +193,44 @@ function results() {
   let correctNum = document.querySelector("#score")
   let wrongPerc = document.querySelector("#risposteErratePercentuale")
   let wrongNum = document.querySelector("#risposteErrate")
-  let risultatoA = punteggioPercentuale();
-  let risultatoB = risposteErrate();
-  let risultatoC = risposteErratePercentuale();
+  
   correctPerc.innerText = `${risultatoA}%`
   correctNum.innerText = `${punteggio}/10`
   wrongPerc.innerText = `${risultatoC}%`
   wrongNum.innerText = `${risultatoB}/10`
 }
 
-
+function esitoTest() {
+let esito = document.querySelector("#esito")
+if (punteggio>=6)
+{let a = document.createElement("p")
+ let b = document.createElement("p")
+ let c = document.createElement("p")
+a.innerText="Congratulations!"
+b.innerText= "You passed the exam."
+c.innerText= `We'll send you the certificate
+in few minutes.
+Check your email (including 
+promotions / spam folder)`
+a.classList.add("paragrafo1")
+b.classList.add("paragrafo2")
+c.classList.add("paragrafo3")
+esito.appendChild(a);
+esito.appendChild(b);
+esito.appendChild(c);
+}
+else {let d = document.createElement("p")
+  let e = document.createElement("p")
+  let f = document.createElement("p")
+  d.innerText="Unlucky!"
+  e.innerText= "You didn't pass the exam."
+  f.innerText= `But you can try to do it again soon!`
+  esito.appendChild(d);
+  esito.appendChild(e);
+  esito.appendChild(f);
+}
+  
+}
 
 
 
@@ -223,7 +262,8 @@ function createDomanda() {   // Funzione per mostrare una domanda
     let domanda = document.createElement('div');  // Crea un nuovo elemento per la domanda
     domanda.innerText = questions[currentQuestionIndex].question;
     container.appendChild(domanda);  // Aggiungi l'elemento domanda al contenitore
-    
+     let questionNum = document.querySelector("#questionNum")
+  questionNum.innerText = `QUESTION ${currentQuestionIndex+1}/10`
 }
 
 
@@ -291,3 +331,40 @@ function startTimer() {
 }, 1000)
 }
 
+// function bottoneProsegui() {
+  
+//   if (currentQuestionIndex === 9 || timerDuration === 0) {
+//     let footer = document.querySelector("footer")
+//     let button = document.createElement("button")
+//     button.innerText = "Prosegui"
+//     button.classList.add("btn-prosegui")
+//     footer.appendChild(button)
+//     console.dir (button)
+//     }
+    
+// }
+// bottoneProsegui()
+
+
+function bottoneProsegui() {
+  // Mostra il bottone "Prosegui" solo se siamo all'ultima domanda o se il timer è scaduto
+  if (currentQuestionIndex === domande.length - 1 || timerDuration === 0) {
+    // Controlla se il bottone è già stato aggiunto
+    console.log("Controllo delle condizioni per il bottone: ", currentQuestionIndex, domande.length - 1, timerDuration);
+    if (!document.querySelector(".btn-prosegui")) {
+      let footer = document.querySelector("footer");
+      let button = document.createElement("button");
+      button.innerText = "Prosegui";
+      button.classList.add("btn-prosegui");
+
+      // Aggiungi l'event listener per il click del bottone
+      button.addEventListener("click", function() {
+        window.location.href = "http://127.0.0.1:5500/Results.html"; // Cambia questo URL se necessario
+      });
+
+      // Aggiungi il bottone al footer
+      footer.appendChild(button);
+    }
+  }
+}
+bottoneProsegui()
