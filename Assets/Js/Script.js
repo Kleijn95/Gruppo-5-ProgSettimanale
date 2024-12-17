@@ -183,7 +183,7 @@ if( selectedAnswer === risposteEsatte[currentQuestionIndex]){
       
   createDomanda();
   createRisposte();
-    startTimer();
+  startTimer();
 
  }
 } 
@@ -194,14 +194,14 @@ let timerDuration= 60;
 function startTimer() {
   clearInterval(timer)
   timerDuration= 60;
- let tempo = document.querySelector('.timer')
- tempo.innerText = timerDuration
-timer = setInterval(function() {
+  let tempo = document.querySelector('.timer')
+  tempo.innerText = timerDuration
+  timer = setInterval(function() {
   timerDuration--;
   document.querySelector('.timer').innerText = timerDuration;
- if (timerDuration<=0) {
+  if (timerDuration<=0) {
   clearInterval(timer)
-   checkAnswer();
+  checkAnswer();
  }
 }, 1000)
 }
