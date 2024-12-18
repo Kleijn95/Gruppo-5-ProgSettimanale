@@ -88,15 +88,36 @@ span {
     padding-top: 5rem;
 }
 
- #promise {
+#promise {
     border: 2px solid white;
     padding: 0.5rem;
     vertical-align: middle;
-    border: 2px solid white;
     background: inherit;
     appearance: none;
     background-color: transparent;
-} 
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: relative; /*position: relative fa sì che il contenuto ::before possa essere posizionato correttamente all'interno della checkbox stessa.*/
+}
+
+#promise:checked {
+    background-color: transparent; /* Questo è per mostrare il check sullo sfondo trasparente*/
+}
+
+#promise:checked::before {
+    content: '✔';
+    color: rgb(207, 0, 128); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 20px; /* Allinea il contenuto verticalmente così che la spunta appare centrata dentro la checkbox */
+}
+
 
 .agreement p {
     display: inline-block;
@@ -246,8 +267,9 @@ footer input {
     height: 15%;
     width: 30%;
     font-size: 20px;
-    border: 2px solid 
-    
+    border: 2px solid;
+    border: solid white;
+    border-bottom: solid rgba(255, 255, 255, 0.1) ; 
     
     
 }
@@ -356,3 +378,10 @@ section #wrong{
         font-size: 1.2rem;
     
 }
+#error-msg {
+    color: red;
+    margin-left: 10px;
+    font-weight: bold;
+    float: left;
+  }
+  
