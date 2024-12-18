@@ -255,9 +255,8 @@ footer input {
     height: 15%;
     width: 30%;
     font-size: 16px;
-    
-    
-    
+    border: solid white;
+    border-bottom: solid rgba(255, 255, 255, 0.1) ; 
 }
 
 .bottone:active{
