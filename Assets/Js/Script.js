@@ -114,8 +114,8 @@ let timerDuration= 60;
 let punteggio = localStorage.getItem("score")
 punteggio = parseInt(punteggio);
 let risultatoA = punteggioPercentuale();
-  let risultatoB = risposteErrate();
-  let risultatoC = risposteErratePercentuale();
+let risultatoB = risposteErrate();
+let risultatoC = risposteErratePercentuale();
 
 if (document.location.pathname === "/Welcome.html") {
   proceed()                                                             // Funzioni Pagina Welcome
@@ -140,12 +140,6 @@ if (document.location.pathname === "/Results.html") {
 
 
 
-
-
-
-
-
-
 function rateUs() {
   let rateUs = document.querySelector("#rateUs")
   rateUs.addEventListener("click", function(){
@@ -163,7 +157,6 @@ function proceed() {
     }
   })
 }
-
 
 
 function punteggioPercentuale() {
@@ -266,9 +259,6 @@ function createDomanda() {   // Funzione per mostrare una domanda
   questionNum.innerText = `QUESTION ${currentQuestionIndex+1}/10`
 
 }
-
-
-
 
 
 
