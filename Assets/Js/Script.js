@@ -121,6 +121,7 @@ let risultatoA = punteggioPercentuale();
 let risultatoB = risposteErrate();
 let risultatoC = risposteErratePercentuale();
 
+
 if (document.location.pathname === "/Welcome.html") {
   proceed()                                                             // Funzioni Pagina Welcome
 }
@@ -229,35 +230,48 @@ function results() {
 
 function esitoTest() {
 let esito = document.querySelector("#esito")
-if (punteggio>=6)
-{let a = document.createElement("p")
- let b = document.createElement("p")
- let c = document.createElement("p")
-a.innerText="Congratulations!"
-b.innerText= "You passed the exam."
-c.innerText= `We'll send you the certificate
-in few minutes.
-Check your email (including 
-promotions / spam folder)`
-a.classList.add("paragrafo1")
-b.classList.add("paragrafo2")
-c.classList.add("paragrafo3")
-esito.appendChild(a);
-esito.appendChild(b);
-esito.appendChild(c);
+if (punteggio>=6){
+// {let a = document.createElement("p")
+//  let b = document.createElement("p")
+//  let c = document.createElement("p")
+// a.innerText="Congratulations!"
+// b.innerText= "You passed the exam."
+// c.innerText= `We'll send you the certificate
+// in few minutes.
+// Check your email (including 
+// promotions / spam folder)`
+// a.classList.add("paragrafo1")
+// b.classList.add("paragrafo2")
+// c.classList.add("paragrafo3")
+// esito.appendChild(a);
+// esito.appendChild(b);
+// esito.appendChild(c);
+return `Congratulations!
+You passed the exam.
+
+We'll send you the certificate
+ in few minutes.
+ Check your email (including
+ promotion/spam folder)
+ 
+ 
+ `;
 }
-else {let d = document.createElement("p")
-  let e = document.createElement("p")
-  let f = document.createElement("p")
-  d.innerText="Unlucky!"
-  e.innerText= "You didn't pass the exam."
-  f.innerText= `But you can try to do it again soon!`
-  esito.appendChild(d);
-  esito.appendChild(e);
-  esito.appendChild(f);
-}
+else {return `Unlucky!\nYou didn't pass the exam.\nBut you can try to do it again soon!`;
+// else {let d = document.createElement("p")
+//   let e = document.createElement("p")
+//   let f = document.createElement("p")
+//   d.innerText="Unlucky!"
+//   e.innerText= "You didn't pass the exam."
+//   f.innerText= `But you can try to do it again soon!`
+//   esito.appendChild(d);
+//   esito.appendChild(e);
+//   esito.appendChild(f);
   
 }
+}
+
+
 
 
 
@@ -453,36 +467,131 @@ function bottoneProsegui() {
     let percentCorrect = punteggioPercentuale();
     let percentWrong = risposteErratePercentuale();
   
-    const data = {
-      labels: ['Correct', 'Wrong'],
-      datasets: [
-        {
-          label: 'Test Results',
-          data: [percentCorrect, percentWrong],
-          backgroundColor: [
-            percentCorrect >= 80 ? 'green' : 'orange', // Verde se il punteggio è 80% o più
-            percentWrong >= 80 ? 'red' : 'yellow'    // Rosso se le risposte errate sono più del 80%
-          ],
-        }
-      ]
-    };
-    const ctx = document.getElementById('myChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'doughnut',
-      data: data,
-      options: {
+    
+
+  const centerTextPlugin = {
+    id: 'centerText',
+    beforeDraw: (chart) => {
+        const {width, height, ctx} = chart;
+        ctx.save();
+
+        // Imposta lo stile del testo
+        ctx.font = '20px Outfit, sans-serif';
+        ctx.fillStyle = 'white';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        // Calcola il centro del grafico
+        const centerX = width / 2;
+        const centerY = height / 2;
+
+        // Testo da visualizzare
+        const esitoText = esitoTest(); // Ottieni il testo dalla funzione esitoTest()
+        const lines = esitoText.split("\n");
+
+        // Stampa il testo riga per riga
+        lines.forEach((line, index) => {
+            ctx.fillText(line, centerX, centerY - 10 + (index * 20));
+        });
+
+        ctx.restore();
+    }
+};
+
+// Configurazione dei dati del grafico
+const data = {
+    labels: [],
+    datasets: [{
+        data: [percentWrong, percentCorrect],
+        backgroundColor: ['#c2128c', '#00FFFF'],
+        hoverOffset: 4
+    }]
+};
+
+// Configurazione generale del grafico
+const config = {
+    type: 'doughnut',
+    data: data,
+    options: {
         responsive: true,
-        maintainAspectRatio: true,
+        borderWidth: 0,
+        cutout: "75%",
         plugins: {
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: true,
-            text: 'Test Results'
-          }
+            legend: {
+                display: true,
+                position: 'top'
+            }
         }
-      }
-    });
+    },
+    plugins: [centerTextPlugin]
+};
+
+// Creazione del grafico
+const myDoughnutChart = new Chart(
+    document.getElementById('myChart'),
+    config
+);
+
   }
-  
+  // const data = {
+      
+    //   datasets: [
+    //     {
+    //       label: 'Test Results',
+    //       data: [percentWrong,percentCorrect],
+    //       // backgroundColor: [
+    //       //   // percentCorrect >= 80 ? '#00FFFF' : '#00FFFF', // Verde se il punteggio è 80% o più
+    //       //   // percentWrong >= 80 ? '#c2128c' : '#c2128c'    // Rosso se le risposte errate sono più del 80%
+    //       //   percentCorrect= '#c2128c',
+    //       //   percentWrong=   '#00FFFF'
+    //       // ],
+    //       backgroundColor: [
+    //         '#c2128c', // Rosa per le risposte sbagliate
+    //         '#00FFFF'  // Azzurro per le risposte corrette
+    //       ],
+    //     }
+    //   ]
+    // };
+  //   const ctx = document.getElementById('myChart').getContext('2d');
+  //   new Chart(ctx, {
+  //     type: 'doughnut',
+  //     data: data,
+  //     options: {
+  //       responsive: true,
+  //       maintainAspectRatio: true,
+  //       borderWidth: 0,
+  //       cutout: "75%",
+  //       plugins: {
+          
+  //         centerTextPlugin: {
+  //           id: 'centerText',
+  //           beforeDraw: (chart) => {
+  //               const {width} = chart;
+  //               const {height} = chart;
+  //               const ctx = chart.ctx;
+
+  //               ctx.save();
+
+  //               // Imposta lo stile del testo
+  //               ctx.font = '20px Arial';
+  //               ctx.fillStyle = 'black';
+  //               ctx.textAlign = 'center';
+  //               ctx.textBaseline = 'middle';
+
+  //               // Calcola le coordinate del centro
+  //               const centerX = width / 2;
+  //               const centerY = height / 2;
+
+  //               // Testo da visualizzare
+  //               const text = 'Ciao, Chart.js!';
+
+  //               // Disegna il testo al centro
+  //               ctx.fillText(text, centerX, centerY);
+
+  //               ctx.restore();
+  //           }
+        
+  //         }
+  //       }
+  //     }
+  //   });
