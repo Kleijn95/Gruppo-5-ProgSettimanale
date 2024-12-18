@@ -82,7 +82,7 @@ span {
     padding-top: 5rem;
 }
 
-#promise {
+ #promise {
     border: 2px solid white;
     padding: 0.5rem;
     vertical-align: middle;
@@ -90,7 +90,7 @@ span {
     background: inherit;
     appearance: none;
     background-color: transparent;
-}
+} 
 
 .agreement p {
     display: inline-block;
@@ -111,6 +111,18 @@ span {
     font-size: 1.2rem;
 }
 
+/* input[type='checkbox'] {
+    clip: rect(1px, 1px, 1px, 1px);
+   
+}
+
+input[type='checkbox'] + label {
+    cursor: pointer;
+}
+
+input[type='checkbox']:checked + label {
+    background-image: url('https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787_1280.png')
+} */
 
 #reviewPage {
     text-align: center;
@@ -174,3 +186,64 @@ footer input {
     .inactive {
         fill: #2E2E4B;
         filter: brightness(0.1);}
+
+
+        .btn-prosegui {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+          }
+          
+          .btn-prosegui:hover {
+            background-color: #45a049;
+          }
+
+
+.questions{
+    text-align: center;
+    font-size: 350%;
+    padding: 3rem;
+    padding-top: 5rem;
+    margin-top: 5rem;
+    
+}
+
+.buttonContainer{
+    text-align: center;
+    font-size: 150%;
+    margin: 2rem;
+    padding-top: 3rem;
+    
+    
+}
+.bottone{
+    margin: 1rem;
+    padding: 1.7rem;
+    border-radius: 30px;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+
+.timer{
+    position: absolute;
+    right: 10px; 
+    top: 10px;
+    margin: 3rem;
+    padding: 2rem;
+    font-size: 80px;
+    
+   
+   
+}
+
+
+#questionNum{
+    margin-top: 5rem;
+    padding-top: 5rem;
+}
