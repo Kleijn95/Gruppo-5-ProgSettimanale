@@ -221,14 +221,25 @@ footer input {
     
 }
 .bottone{
-    margin: 1rem;
+    margin: 1rem 10rem 1rem 0rem;
     padding: 1.7rem;
-    border-radius: 30px;
-    background-color: transparent;
+    border-radius:  30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
     color: white;
     cursor: pointer;
+    height: 15%;
+    width: 30%;
+    font-size: 16px;
+    
+    
+    
 }
 
+.bottone:active{
+    background: -webkit-linear-gradient(#ff005d, #c700ff);
+   
+}
 
 .timer{
     position: absolute;
