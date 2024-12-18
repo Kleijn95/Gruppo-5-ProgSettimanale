@@ -17,7 +17,7 @@ const questions = [
     type: "multiple",
     difficulty: "easy",
     question:
-      "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn&#039;t get modified?",
+      "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn't get modified?",
     correct_answer: "Final",
     incorrect_answers: ["Static", "Private", "Public"],
   },
@@ -256,8 +256,7 @@ function createDomanda() {   // Funzione per mostrare una domanda
     domanda.innerText = questions[currentQuestionIndex].question;
     container.appendChild(domanda);  // Aggiungi l'elemento domanda al contenitore
      let questionNum = document.querySelector("#questionNum")
-  questionNum.innerText = `QUESTION ${currentQuestionIndex+1}/10`
-
+     questionNum.innerHTML = `QUESTION ${currentQuestionIndex + 1}<span class="gradient-text">&nbsp; / &nbsp;10</span>`;
 }
 
 
@@ -307,7 +306,7 @@ if( selectedAnswer === risposteEsatte[currentQuestionIndex]){
   
  }
  else {
-  alert("ok")
+  
   bottoneProsegui()
  }
 } 
@@ -316,10 +315,14 @@ function startTimer() {
   clearInterval(timer)
   timerDuration= 60;
   let tempo = document.querySelector('.timer')
-  tempo.innerText = timerDuration
+  tempo.innerHTML = `<p class="pTimer">SECONDS</p>
+  ${timerDuration}
+  <p class="pTimer">REMAINING</p>`
   timer = setInterval(function() {
   timerDuration--;
-  document.querySelector('.timer').innerText = timerDuration;
+  document.querySelector('.timer').innerHTML = `<p class="pTimer">SECONDS</p>
+  ${timerDuration}
+  <p class="pTimer">REMAINING</p>`
   if (timerDuration<=0) {
   clearInterval(timer)
   checkAnswer();
@@ -348,7 +351,7 @@ function bottoneProsegui() {
     if (!document.querySelector(".btn-prosegui")) {
       let footer = document.querySelector("footer");
       let button = document.createElement("button");
-      button.innerText = "Prosegui";
+      button.innerText = "Vai ai Risultati";
       button.classList.add("btn-prosegui");
 
      
