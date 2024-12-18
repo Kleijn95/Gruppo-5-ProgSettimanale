@@ -99,6 +99,10 @@ const questions = [
   },
 ];
 
+
+
+
+
 //CSS
 
 //Dichiarazione delle variabili
@@ -136,6 +140,7 @@ if (document.location.pathname === "/Results.html") {
   rateUs()
   results()
   esitoTest()
+  updateChart()
 }
 
 
@@ -433,3 +438,51 @@ function bottoneProsegui() {
           });
       });
   });
+
+
+
+
+
+
+
+
+
+
+
+  function updateChart() {
+    let percentCorrect = punteggioPercentuale();
+    let percentWrong = risposteErratePercentuale();
+  
+    const data = {
+      labels: ['Correct', 'Wrong'],
+      datasets: [
+        {
+          label: 'Test Results',
+          data: [percentCorrect, percentWrong],
+          backgroundColor: [
+            percentCorrect >= 80 ? 'green' : 'orange', // Verde se il punteggio è 80% o più
+            percentWrong >= 80 ? 'red' : 'yellow'    // Rosso se le risposte errate sono più del 80%
+          ],
+        }
+      ]
+    };
+    const ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: data,
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Test Results'
+          }
+        }
+      }
+    });
+  }
+  
