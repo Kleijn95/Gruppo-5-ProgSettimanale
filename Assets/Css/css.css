@@ -287,7 +287,8 @@ footer input {
     padding: 2rem;
     font-size: 60px;
     font-family: "Outfit", sans-serif;
-   
+    width: 150px; /* Imposta una larghezza fissa */
+    height: 150px; /* Imposta un'altezza fissa */
    
 }
 .timer {
@@ -296,6 +297,7 @@ footer input {
     justify-content: center;
     align-items: center;
     text-align: center;
+    width: 150px;
   }
   
   .pTimer {
@@ -307,7 +309,6 @@ footer input {
     
     
 }
-
 
 
 
