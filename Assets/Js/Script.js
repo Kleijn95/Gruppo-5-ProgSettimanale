@@ -286,7 +286,7 @@ function createRisposte() {
       button.innerText = answer;
 
       button.classList.add("bottone")
-      
+  
       button.onclick = () => { 
        /* let selectedAnswer = tutteLeRisposte[currentAnswerIndex];
         console.log("Risposta selezionata:", selectedAnswer);*/
