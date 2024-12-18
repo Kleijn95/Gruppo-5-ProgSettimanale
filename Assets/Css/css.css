@@ -342,3 +342,10 @@ section #wrong{
         font-size: 1.2rem;
     
 }
+#error-msg {
+    color: red;
+    margin-left: 10px;
+    font-weight: bold;
+    float: left;
+  }
+  

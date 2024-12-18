@@ -146,17 +146,46 @@ function rateUs() {
     window.location.href = "http://127.0.0.1:5500/Review.html"})}
    
 
-function proceed() {
+/*function proceed() {
   let checkBox = document.querySelector("#promise")
   let buttonProceed = document.querySelector(".proceed")
   buttonProceed.addEventListener("click", function(){
     if (checkBox.checked) {
     window.location.href = "http://127.0.0.1:5500/Test.html"}
     else {
-      alert ("Spunta la checkbox")
+      let span = document.createElement("span");
+      span.id = "error-msg"; 
+      span.style.color = "red"; 
+      span.style.marginLeft = "10px"; 
+      span.textContent = "Spunta la checkbox";
     }
   })
+}*/
+function proceed() {
+  let checkBox = document.querySelector("#promise");
+  let buttonProceed = document.querySelector(".proceed");
+  
+  buttonProceed.addEventListener("click", function() {
+    let errorMsg = document.querySelector("#error-msg");
+
+    
+    if (errorMsg) {       // Rimuovi il messaggio di errore precedente, se mostrato
+      errorMsg.remove();
+    }
+    
+    if (checkBox.checked) {
+      window.location.href = "http://127.0.0.1:5500/Test.html";
+    } else {
+      
+      let spanMe = document.createElement("span"); // Crea un nuovo elemento span per il messaggio di errore
+      spanMe.id = "error-msg";
+      spanMe.textContent = "Spunta la checkbox";
+      
+      checkBox.parentNode.appendChild(spanMe);// Aggiungi il messaggio di errore accanto alla checkbox
+    }
+  });
 }
+
 
 
 function punteggioPercentuale() {
