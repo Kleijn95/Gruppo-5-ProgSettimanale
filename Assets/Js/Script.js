@@ -264,6 +264,7 @@ function createDomanda() {   // Funzione per mostrare una domanda
     container.appendChild(domanda);  // Aggiungi l'elemento domanda al contenitore
      let questionNum = document.querySelector("#questionNum")
   questionNum.innerText = `QUESTION ${currentQuestionIndex+1}/10`
+
 }
 
 
@@ -311,7 +312,12 @@ if( selectedAnswer === risposteEsatte[currentQuestionIndex]){
   createDomanda();
   createRisposte();
   startTimer();
-
+  
+  
+ }
+ else {
+  alert("ok")
+  bottoneProsegui()
  }
 } 
 
@@ -347,9 +353,7 @@ function startTimer() {
 
 
 function bottoneProsegui() {
-  // Mostra il bottone "Prosegui" solo se siamo all'ultima domanda o se il timer è scaduto
-  if (currentQuestionIndex === domande.length - 1 || timerDuration === 0) {
-    // Controlla se il bottone è già stato aggiunto
+ 
     console.log("Controllo delle condizioni per il bottone: ", currentQuestionIndex, domande.length - 1, timerDuration);
     if (!document.querySelector(".btn-prosegui")) {
       let footer = document.querySelector("footer");
@@ -357,14 +361,13 @@ function bottoneProsegui() {
       button.innerText = "Prosegui";
       button.classList.add("btn-prosegui");
 
-      // Aggiungi l'event listener per il click del bottone
+     
       button.addEventListener("click", function() {
-        window.location.href = "http://127.0.0.1:5500/Results.html"; // Cambia questo URL se necessario
+        window.location.href = "http://127.0.0.1:5500/Results.html"; 
       });
 
-      // Aggiungi il bottone al footer
+      
       footer.appendChild(button);
     }
   }
-}
-bottoneProsegui()
+
