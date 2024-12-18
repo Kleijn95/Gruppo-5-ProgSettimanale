@@ -322,7 +322,6 @@ if( selectedAnswer === risposteEsatte[currentQuestionIndex]){
  }
 } 
 
-
 function startTimer() {
   clearInterval(timer)
   timerDuration= 60;
