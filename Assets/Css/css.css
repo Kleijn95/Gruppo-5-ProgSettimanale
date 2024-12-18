@@ -183,10 +183,13 @@ footer input {
         margin-top: 3rem;
     }
 
-    .inactive {
-      
+    .stelle img {
+        cursor: pointer;
         filter: brightness(0.1);}
 
+    .stelle img.active {
+        filter: brightness(1)
+    }
 
         .btn-prosegui {
             padding: 10px 20px;

@@ -361,3 +361,43 @@ function bottoneProsegui() {
     }
   }
 
+
+
+  const stelle = document.querySelectorAll('.stelle img');
+  let clickedIndex = -1; // Variabile per tenere traccia dell'ultima stella cliccata
+  
+  stelle.forEach((stella, index) => {
+      // Evento per il passaggio del mouse
+      stella.addEventListener('mouseover', () => {
+          // Aggiungi la classe "active" a tutte le stelle fino all'indice corrente
+          stelle.forEach((s, i) => {
+              if (i <= index) {
+                  s.classList.add('active');
+              } else {
+                  s.classList.remove('active');
+              }
+          });
+      });
+  
+      // Evento per rimuovere l'illuminazione al passaggio del mouse
+      stella.addEventListener('mouseout', () => {
+          stelle.forEach((s, i) => {
+              // Rimuove l'effetto hover se non è cliccata
+              if (i > clickedIndex) {
+                  s.classList.remove('active');
+              }
+          });
+      });
+  
+      // Evento per il clic
+      stella.addEventListener('click', () => {
+          clickedIndex = index; // Memorizza l'indice della stella cliccata
+          stelle.forEach((s, i) => {
+              if (i <= clickedIndex) {
+                  s.classList.add('active'); // Mantiene le stelle illuminate
+              } else {
+                  s.classList.remove('active'); // Oscura quelle successive
+              }
+          });
+      });
+  });
