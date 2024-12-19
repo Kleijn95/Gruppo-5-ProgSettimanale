@@ -12,7 +12,7 @@ body {
     color: white;
     background-repeat: no-repeat;
     background-size: cover;
-    margin: 0 5%;
+    margin: auto 0;
 
 
 
@@ -40,7 +40,35 @@ header .logo {
     -webkit-text-fill-color: transparent;
 }
 
+#scatola{
+    display: inline-block;
+    width: 98%;
+    min-height: 15%;
+    margin: 2%;
+    
+    
+    
+}
 
+#rightDiv{
+    display: inline-block;
+    padding: 6%;
+    
+    
+}
+
+
+.canvas{
+display: inline-block;
+padding: 6%;
+
+}
+
+
+#wrongDiv{
+display: inline-block;
+padding: 6%;
+}
 
 section h1 {
     font-weight: 300;
@@ -422,7 +450,7 @@ nav h3 {
     font-family: "Outfit", sans-serif;
     line-height: 1.5rem; 
     text-align: center;
-    padding-bottom: 20%;
+    padding-bottom: 3%;
    
 }
 

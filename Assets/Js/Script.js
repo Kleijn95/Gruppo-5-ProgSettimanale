@@ -100,11 +100,6 @@ const questions = [
 ];
 
 
-
-
-
-//CSS
-
 //Dichiarazione delle variabili
 const domande = [];
 const risposteEsatte = [];
@@ -123,20 +118,28 @@ punteggio = parseInt(punteggio) || 0; // Gestione punteggio se non definito
 let risultatoA = punteggioPercentuale();
 let risultatoB = risposteErrate();
 let risultatoC = risposteErratePercentuale();
+const stelle = document.querySelectorAll('.stelle img');
+let clickedIndex = -1; // Variabile per tenere traccia dell'ultima stella cliccata
 
+
+ // Funzioni Pagina WELCOME
 
 if (document.location.pathname === "/Welcome.html") {
-  proceed()                                                             // Funzioni Pagina Welcome
+  proceed()                                                            
 }
 
 
+// Funzioni Pagina TEST
+
 if (document.location.pathname === "/Test.html") {
   estrazione(questions);
-  createDomanda(questions)                                // Funzioni Pagina TEST
+  createDomanda(questions)                                
   createRisposte();
   startTimer()
   ciambellTimer()
 }
+
+// Funzioni Pagina RUSULTS
 
 if (document.location.pathname === "/Results.html") {
   punteggioPercentuale()
@@ -150,27 +153,11 @@ if (document.location.pathname === "/Results.html") {
 
 
 
-function rateUs() {
-  let rateUs = document.querySelector("#rateUs")
-  rateUs.addEventListener("click", function(){
-    window.location.href = "http://127.0.0.1:5500/Review.html"})}
-   
 
-/*function proceed() {
-  let checkBox = document.querySelector("#promise")
-  let buttonProceed = document.querySelector(".proceed")
-  buttonProceed.addEventListener("click", function(){
-    if (checkBox.checked) {
-    window.location.href = "http://127.0.0.1:5500/Test.html"}
-    else {
-      let span = document.createElement("span");
-      span.id = "error-msg"; 
-      span.style.color = "red"; 
-      span.style.marginLeft = "10px"; 
-      span.textContent = "Spunta la checkbox";
-    }
-  })
-}*/
+
+
+//Pagina WELCOME
+
 function proceed() {
   let checkBox = document.querySelector("#promise");
   let buttonProceed = document.querySelector(".proceed");
@@ -203,6 +190,146 @@ function proceed() {
 // Inizializza la funzione
 
 
+// Pagina TEST
+
+
+//Estrae domande e risposte dall'array
+
+function estrazione(){
+  for(let i=0; i<questions.length; i++){
+    domande.push(questions[i].question);
+    risposteEsatte.push(questions[i].correct_answer);
+    risposteSbagliate.push(questions[i].incorrect_answers);
+    tutteLeRisposte.push([questions[i].correct_answer, ...questions[i].incorrect_answers]);
+  }
+}
+
+
+//Crea domande
+
+function createDomanda() {   // Funzione per mostrare una domanda
+  let container = document.querySelector('.questions');
+  container.innerHTML = ''; // Pulisce il contenitore
+  let domanda = document.createElement('div');  // Crea un nuovo elemento per la domanda
+  domanda.innerText = questions[currentQuestionIndex].question;
+  container.appendChild(domanda);  // Aggiungi l'elemento domanda al contenitore
+   let questionNum = document.querySelector("#questionNum")
+   questionNum.innerHTML = `QUESTION ${currentQuestionIndex + 1}<span class="gradient-text">&nbsp; / &nbsp;10</span>`;
+}
+
+
+//Crea Risposte
+
+function createRisposte() {   
+let buttonContainer = document.querySelector(".buttonContainer"); 
+buttonContainer.innerHTML = '';  // Svuota il contenitore prima di aggiungere nuovi pulsanti
+// Crea un pulsante per ogni risposta
+tutteLeRisposte[currentAnswerIndex].sort(()=> Math.random() - 0.5);
+
+/* let risposteMescolate = [...tutteLeRisposte[currentAnswerIndex]];
+risposteMescolate.sort(() => Math.random() - 0.5);*/
+
+for (let i = 0; i < tutteLeRisposte[currentAnswerIndex].length; i++) {
+    let answer = tutteLeRisposte[currentAnswerIndex][i]; 
+    let button = document.createElement("button");
+    button.innerText = answer;
+
+    button.classList.add("bottone")
+
+    button.onclick = () => { 
+     /* let selectedAnswer = tutteLeRisposte[currentAnswerIndex];
+      console.log("Risposta selezionata:", selectedAnswer);*/
+      checkAnswer(answer);    
+}
+    buttonContainer.appendChild(button);
+}
+}
+
+
+//Verifica Risposte
+
+function checkAnswer(selectedAnswer){
+if( selectedAnswer === risposteEsatte[currentQuestionIndex]){
+ score++;
+ localStorage.setItem("score", score)
+}
+currentAnswerIndex++;
+currentQuestionIndex++;
+
+if(currentQuestionIndex < domande.length){
+    
+createDomanda();
+createRisposte();
+startTimer();
+
+
+}
+else {
+
+bottoneProsegui()
+}
+} 
+
+
+//Funzione timer
+
+function startTimer() {
+  clearInterval(timer); // Ferma eventuali timer precedenti
+  timerDuration = totalTime; // Reset del timer
+  remainingTime = timerDuration; // Sincronizza la ciambella
+  aggiornaCiambella(remainingTime, totalTime); // Aggiorna il grafico
+
+  let tempo = document.querySelector('.timer');
+  tempo.innerHTML = `<p class="pTimer">SECONDS</p>
+  ${timerDuration}
+  <p class="pTimer">REMAINING</p>`;
+
+  timer = setInterval(function () {
+    timerDuration--;
+    remainingTime = timerDuration; // Sincronizza il tempo rimanente
+    aggiornaCiambella(remainingTime, totalTime); // Aggiorna il grafico
+
+    document.querySelector('.timer').innerHTML = `<p class="pTimer">SECONDS</p>
+    ${timerDuration}
+    <p class="pTimer">REMAINING</p>`;
+
+    if (timerDuration <= 0) {
+      clearInterval(timer);
+      console.log("Tempo scaduto!");
+      checkAnswer(); // Funzione da eseguire quando il timer termina
+    }
+  }, 1000);
+}
+
+
+//Creazione del bottone allo scadere del tempo o test o completato
+
+function bottoneProsegui() {
+ 
+  console.log("Controllo delle condizioni per il bottone: ", currentQuestionIndex, domande.length - 1, timerDuration);
+  if (!document.querySelector(".btn-prosegui")) {
+    let footer = document.querySelector("footer");
+    let button = document.createElement("button");
+    button.innerText = "Vai ai Risultati";
+    button.classList.add("btn-prosegui");
+
+   
+    button.addEventListener("click", function() {
+      window.location.href = "http://127.0.0.1:5500/Results.html"; 
+    });
+
+    
+    footer.appendChild(button);
+  }
+}
+
+
+
+
+//Pagina Results
+
+
+//Punteggi pagina results
 
 function punteggioPercentuale() {
 let valoreTotale = 10;
@@ -233,186 +360,150 @@ function results() {
   let wrongNum = document.querySelector("#risposteErrate")
   
   correctPerc.innerText = `${risultatoA}%`
-  correctNum.innerText = `${punteggio}/10`
+  correctNum.innerText = `${punteggio}/10 questions`
   wrongPerc.innerText = `${risultatoC}%`
-  wrongNum.innerText = `${risultatoB}/10`
+  wrongNum.innerText = `${risultatoB}/10 questions`
 }
+
+
+//Creazione e formattazione del grafico a ciambella in results
+
+function updateChart() {
+  let percentCorrect = punteggioPercentuale();
+  let percentWrong = risposteErratePercentuale();
+  const centerTextPlugin = {
+                    id: 'centerText',
+                    beforeDraw: (chart) => {
+                    const { width, height, ctx } = chart;
+                    ctx.save();
+
+    // Calcola il centro del grafico
+
+    const centerX = width / 2;
+    const centerY = height / 2;
+
+    // Ottieni il testo e la formattazione in base al punteggio e sostituisci con il punteggio dinamico
+    const lines = esitoTest(punteggio);
+
+    // Imposta lo stile e la posizione del testo
+    let offsetY = -30; // Offset iniziale per il primo testo
+
+    // Disegna ogni riga con stili diversi
+    lines.forEach((line, index) => {
+        if (punteggio >= 6) {
+
+            // Test superato
+            if (index === 0) {
+                // Prima riga: Grassetto bianco
+                ctx.font = "bold 20px Outfit, sans-serif";
+                ctx.fillStyle = "white";
+                
+            } else if (index === 1) {
+                // Seconda riga: Grassetto rosso
+                ctx.font = "bold 20px Outfit, sans-serif";
+                ctx.fillStyle = "#00FFFF";
+                
+            } else {
+                // Testo normale, dimensione più piccola
+                ctx.font = "14px Outfit, sans-serif";
+                ctx.fillStyle = "white";
+                
+            }
+        } else {
+            // Test non superato
+            if (index === 0) {
+                // Prima riga: Grassetto bianco
+                ctx.font = "bold 20px Outfit, sans-serif";
+                ctx.fillStyle = "white";
+            } else {
+                // Testo normale, dimensione più piccola
+                ctx.font = "16px Outfit, sans-serif";
+                ctx.fillStyle = "white";
+            }
+        }
+
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(line, centerX, centerY + offsetY);
+
+// Aggiungi uno spazio maggiore solo dopo la seconda riga (You passed the exam.)
+if (index === 1 && punteggio >= 6) {
+  offsetY += 30; // Aggiungi uno spazio maggiore dopo la seconda riga
+} else {
+  offsetY += 20; // Altezza tra le righe per le altre
+}
+});
+
+ctx.restore();
+}
+};
+
+// Configurazione dei dati del grafico
+const data = {
+  labels: [],
+  datasets: [{
+      data: [percentWrong, percentCorrect],
+      backgroundColor: ['#c2128c', '#00FFFF'],
+      hoverOffset: 4
+  }]
+};
+
+// Configurazione grafica generale del grafico
+const config = {
+  type: 'doughnut',
+  data: data,
+  options: {
+      responsive: true,
+      borderWidth: 0,
+      cutout: "75%",
+      plugins: {
+          legend: {
+              display: true,
+              position: 'top'
+          }
+      }
+  },
+  plugins: [centerTextPlugin]
+};
+
+// Creazione del grafico
+const myDoughnutChart = new Chart(
+  document.getElementById('myChart'),
+  config
+);
+}
+
+//Scrive il messaggio nel grafico di results
 
 function esitoTest() {
-let esito = document.querySelector("#esito")
-if (punteggio >= 6) {
-  return [
-      "Congratulations!",           // Prima riga (bianco, grassetto)
-      "You passed the exam.",       // Seconda riga (rosso, grassetto)
-      
-      "We'll send you the certificate", // Testo normale (bianco)
-      "in a few minutes.",          // Testo normale (bianco)
-      "Check your email (including", // Testo normale (bianco)
-      "promotion/spam folder)."     // Testo normale (bianco)
-  ];
-} else {
-  return [
-      "Unlucky!",                   // Prima riga (bianco, grassetto)
-      "You didn't pass the exam.",  // Seconda riga (bianco, normale)
-      "But you can try again soon!" // Testo normale (bianco)
-  ];
-}
-}
-
-
-
-
-
-
-//Estrae domande e risposte dall'array
-
-function estrazione(){
-  for(let i=0; i<questions.length; i++){
-    domande.push(questions[i].question);
-    risposteEsatte.push(questions[i].correct_answer);
-    risposteSbagliate.push(questions[i].incorrect_answers);
-    tutteLeRisposte.push([questions[i].correct_answer, ...questions[i].incorrect_answers]);
+  if (punteggio >= 6) {
+    return [
+        "Congratulations!",           // Prima riga (bianco, grassetto)
+        "You passed the exam.",       // Seconda riga (rosso, grassetto)
+        
+        "We'll send you the certificate", // Testo normale (bianco)
+        "in a few minutes.",          // Testo normale (bianco)
+        "Check your email (including", // Testo normale (bianco)
+        "promotion/spam folder)."     // Testo normale (bianco)
+    ];
+  } else {
+    return [
+        "Unlucky!",                   // Prima riga (bianco, grassetto)
+        "You didn't pass the exam.",  // Seconda riga (bianco, normale)
+        "But you can try again soon!" // Testo normale (bianco)
+    ];
   }
-}
-
-
-
-/*
-  console.log(domande)// qui abbiamo l'array con l'elenco delle domande
-  console.log(risposteEsatte)
-  console.log(risposteSbagliate)
-  console.log(tutteLeRisposte)*/
-
-
-function createDomanda() {   // Funzione per mostrare una domanda
-    let container = document.querySelector('.questions');
-    container.innerHTML = ''; // Pulisce il contenitore
-    let domanda = document.createElement('div');  // Crea un nuovo elemento per la domanda
-    domanda.innerText = questions[currentQuestionIndex].question;
-    container.appendChild(domanda);  // Aggiungi l'elemento domanda al contenitore
-     let questionNum = document.querySelector("#questionNum")
-     questionNum.innerHTML = `QUESTION ${currentQuestionIndex + 1}<span class="gradient-text">&nbsp; / &nbsp;10</span>`;
-}
-
-
-
-function createRisposte() {   
-  let buttonContainer = document.querySelector(".buttonContainer"); 
-  buttonContainer.innerHTML = '';  // Svuota il contenitore prima di aggiungere nuovi pulsanti
-  // Crea un pulsante per ogni risposta
-  tutteLeRisposte[currentAnswerIndex].sort(()=> Math.random() - 0.5);
-
-  /* let risposteMescolate = [...tutteLeRisposte[currentAnswerIndex]];
-  risposteMescolate.sort(() => Math.random() - 0.5);*/
-
-  for (let i = 0; i < tutteLeRisposte[currentAnswerIndex].length; i++) {
-      let answer = tutteLeRisposte[currentAnswerIndex][i]; 
-      let button = document.createElement("button");
-      button.innerText = answer;
-
-      button.classList.add("bottone")
-  
-      button.onclick = () => { 
-       /* let selectedAnswer = tutteLeRisposte[currentAnswerIndex];
-        console.log("Risposta selezionata:", selectedAnswer);*/
-        checkAnswer(answer);    
   }
-      buttonContainer.appendChild(button);
-}
-}
-
-
-
-
-function checkAnswer(selectedAnswer){
-if( selectedAnswer === risposteEsatte[currentQuestionIndex]){
-   score++;
-   localStorage.setItem("score", score)
-}
- currentAnswerIndex++;
- currentQuestionIndex++;
-
- if(currentQuestionIndex < domande.length){
-      
-  createDomanda();
-  createRisposte();
-  startTimer();
   
-  
- }
- else {
-  
-  bottoneProsegui()
- }
-} 
-
-function startTimer() {
-  clearInterval(timer); // Ferma eventuali timer precedenti
-  timerDuration = totalTime; // Reset del timer
-  remainingTime = timerDuration; // Sincronizza la ciambella
-  aggiornaCiambella(remainingTime, totalTime); // Aggiorna il grafico
-
-  let tempo = document.querySelector('.timer');
-  tempo.innerHTML = `<p class="pTimer">SECONDS</p>
-  ${timerDuration}
-  <p class="pTimer">REMAINING</p>`;
-
-  timer = setInterval(function () {
-    timerDuration--;
-    remainingTime = timerDuration; // Sincronizza il tempo rimanente
-    aggiornaCiambella(remainingTime, totalTime); // Aggiorna il grafico
-
-    document.querySelector('.timer').innerHTML = `<p class="pTimer">SECONDS</p>
-    ${timerDuration}
-    <p class="pTimer">REMAINING</p>`;
-
-    if (timerDuration <= 0) {
-      clearInterval(timer);
-      console.log("Tempo scaduto!");
-      checkAnswer(); // Funzione da eseguire quando il timer termina
-    }
-  }, 1000);
-}
-
-// function bottoneProsegui() {
-  
-//   if (currentQuestionIndex === 9 || timerDuration === 0) {
-//     let footer = document.querySelector("footer")
-//     let button = document.createElement("button")
-//     button.innerText = "Prosegui"
-//     button.classList.add("btn-prosegui")
-//     footer.appendChild(button)
-//     console.dir (button)
-//     }
-    
-// }
-// bottoneProsegui()
-
-
-function bottoneProsegui() {
- 
-    console.log("Controllo delle condizioni per il bottone: ", currentQuestionIndex, domande.length - 1, timerDuration);
-    if (!document.querySelector(".btn-prosegui")) {
-      let footer = document.querySelector("footer");
-      let button = document.createElement("button");
-      button.innerText = "Vai ai Risultati";
-      button.classList.add("btn-prosegui");
-
-     
-      button.addEventListener("click", function() {
-        window.location.href = "http://127.0.0.1:5500/Results.html"; 
-      });
-
-      
-      footer.appendChild(button);
-    }
-  }
 
 
 
-  const stelle = document.querySelectorAll('.stelle img');
-  let clickedIndex = -1; // Variabile per tenere traccia dell'ultima stella cliccata
-  
+
+//Pagina Review
+
+
+// Creazione ed illuminazione delle stelle
+
   stelle.forEach((stella, index) => {
       // Evento per il passaggio del mouse
       stella.addEventListener('mouseover', () => {
@@ -451,121 +542,86 @@ function bottoneProsegui() {
 
 
 
+//
 
+function rateUs() {
+  let rateUs = document.querySelector("#rateUs")
+  rateUs.addEventListener("click", function(){
+    window.location.href = "http://127.0.0.1:5500/Review.html"})}
 
-
-
-
-
-
-
-  function updateChart() {
-    let percentCorrect = punteggioPercentuale();
-    let percentWrong = risposteErratePercentuale();
   
+
+    function ciambellTimer() {
     
-
-  const centerTextPlugin = {
-    id: 'centerText',
-    beforeDraw: (chart) => {
-      const { width, height, ctx } = chart;
-      ctx.save();
-
-      // Calcola il centro del grafico
-      const centerX = width / 2;
-      const centerY = height / 2;
-
-      // Ottieni il testo e la formattazione in base al punteggio
-       // Sostituisci con il punteggio dinamico
-      const lines = esitoTest(punteggio);
-
-      // Imposta lo stile e la posizione del testo
-      let offsetY = -30; // Offset iniziale per il primo testo
-
-      // Disegna ogni riga con stili diversi
-      lines.forEach((line, index) => {
-          if (punteggio >= 6) {
-              // Test superato
-              if (index === 0) {
-                  // Prima riga: Grassetto bianco
-                  ctx.font = "bold 20px Outfit, sans-serif";
-                  ctx.fillStyle = "white";
-                  
-              } else if (index === 1) {
-                  // Seconda riga: Grassetto rosso
-                  ctx.font = "bold 20px Outfit, sans-serif";
-                  ctx.fillStyle = "#00FFFF";
-                  
-              } else {
-                  // Testo normale, dimensione più piccola
-                  ctx.font = "14px Outfit, sans-serif";
-                  ctx.fillStyle = "white";
-                  
-              }
-          } else {
-              // Test non superato
-              if (index === 0) {
-                  // Prima riga: Grassetto bianco
-                  ctx.font = "bold 20px Outfit, sans-serif";
-                  ctx.fillStyle = "white";
-              } else {
-                  // Testo normale, dimensione più piccola
-                  ctx.font = "16px Outfit, sans-serif";
-                  ctx.fillStyle = "white";
-              }
-          }
-
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-          ctx.fillText(line, centerX, centerY + offsetY);
-
-          // Aggiungi uno spazio maggiore solo dopo la seconda riga (You passed the exam.)
-  if (index === 1 && punteggio >= 6) {
-    offsetY += 30; // Aggiungi uno spazio maggiore dopo la seconda riga
-} else {
-    offsetY += 20; // Altezza tra le righe per le altre
-}
-});
-
-ctx.restore();
-  }
-};
-
-// Configurazione dei dati del grafico
-const data = {
-    labels: [],
-    datasets: [{
-        data: [percentWrong, percentCorrect],
-        backgroundColor: ['#c2128c', '#00FFFF'],
-        hoverOffset: 4
-    }]
-};
-
-// Configurazione generale del grafico
-const config = {
-    type: 'doughnut',
-    data: data,
-    options: {
+   
+      const ctx = document.getElementById("timerChart").getContext("2d");
+    
+    let totalTime = 60; // Tempo totale del timer in secondi
+    let remainingTime = totalTime; // Tempo rimanente
+    
+    // Crea il grafico iniziale
+    const chart = new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: ["Tempo trascorso","Tempo rimanente"],
+        datasets: [
+          {
+            label: "Timer",
+            data: [remainingTime, totalTime - remainingTime],
+            backgroundColor: ["#e0e0e0","#00FFFF"],
+            borderWidth: 0, // Nessun bordo
+          },
+        ],
+      },
+      options: {
         responsive: true,
-        borderWidth: 0,
-        cutout: "75%",
+        cutout: "70%", // Per creare un anello più spesso
         plugins: {
-            legend: {
-                display: true,
-                position: 'top'
-            }
-        }
-    },
-    plugins: [centerTextPlugin]
-};
+          legend: {
+            display: false, // Nascondi legenda
+          },
+          tooltip: {
+            enabled: false, // Nascondi tooltip
+          },
+        },
+      },
+    });
+    
+    // Aggiorna il grafico ogni secondo
+    const interval = setInterval(() => {
+      remainingTime--;
+    
+      // Aggiorna i dati del grafico
+      chart.data.datasets[0].data = [remainingTime, totalTime - remainingTime];
+      chart.update();
+    
+      // Controlla se il timer è terminato
+      if (remainingTime <= 0) {
+        clearInterval(interval);
+        console.log("Tempo scaduto!");
+      }
+    }, 1000);}
 
-// Creazione del grafico
-const myDoughnutChart = new Chart(
-    document.getElementById('myChart'),
-    config
-);
 
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //Protototipi ed idee
+
+
   // const data = {
       
     //   datasets: [
@@ -629,44 +685,43 @@ const myDoughnutChart = new Chart(
   //     }
   //   });
   // Funzione per creare la ciambella
-function ciambellTimer() {
-  const ctx = document.getElementById("timerChart").getContext("2d");
-
-  // Crea il grafico iniziale
-  chart = new Chart(ctx, {
-    type: "doughnut",
-    data: {
-      labels: ["Tempo rimanente", "Tempo trascorso"],
-      datasets: [
-        {
-          label: "Timer",
-          data: [remainingTime, totalTime - remainingTime],
-          backgroundColor: ["#00FFFF", "#e0e0e0"],
-          borderWidth: 0, // Nessun bordo
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      cutout: "70%", // Per creare un anello più spesso
-     
-      
-      plugins: {
-        legend: {
-          display: false, // Nascondi legenda
-        },
-        tooltip: {
-          enabled: false, // Nascondi tooltip
+  function ciambellTimer() {
+    const ctx = document.getElementById("timerChart").getContext("2d");
+  
+    // Crea il grafico iniziale
+    chart = new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: ["Tempo trascorso", "Tempo rimanente"], // Inverti i label per coerenza
+        datasets: [
+          {
+            label: "Timer",
+            data: [totalTime - remainingTime, remainingTime], // Inverti i dati
+            backgroundColor: ["#e0e0e0", "#00FFFF"], // Inverti i colori
+            borderWidth: 0, // Nessun bordo
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        cutout: "70%", // Per creare un anello più spesso
+        rotation: -Math.PI / 2, // Inizia dall'alto e scende in senso antiorario
+        plugins: {
+          legend: {
+            display: false, // Nascondi legenda
+          },
+          tooltip: {
+            enabled: false, // Nascondi tooltip
+          },
         },
       },
-    },
-  });
-}
-
-// Funzione per aggiornare il grafico
-function aggiornaCiambella(remainingTime, totalTime) {
-  if (chart) {
-    chart.data.datasets[0].data = [remainingTime, totalTime - remainingTime];
-    chart.update();
+    });
   }
-}
+  
+  // Funzione per aggiornare il grafico
+  function aggiornaCiambella(remainingTime, totalTime) {
+    if (chart) {
+      chart.data.datasets[0].data = [totalTime - remainingTime, remainingTime]; // Inverti i dati
+      chart.update();
+    }
+  }
