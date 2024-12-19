@@ -360,9 +360,9 @@ function results() {
   let wrongNum = document.querySelector("#risposteErrate")
   
   correctPerc.innerText = `${risultatoA}%`
-  correctNum.innerText = `${punteggio}/10`
+  correctNum.innerText = `${punteggio}/10 questions`
   wrongPerc.innerText = `${risultatoC}%`
-  wrongNum.innerText = `${risultatoB}/10`
+  wrongNum.innerText = `${risultatoB}/10 questions`
 }
 
 
