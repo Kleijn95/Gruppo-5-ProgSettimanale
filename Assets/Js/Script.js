@@ -551,140 +551,7 @@ function rateUs() {
 
   
 
-    function ciambellTimer() {
-    
-   
-      const ctx = document.getElementById("timerChart").getContext("2d");
-    
-    let totalTime = 60; // Tempo totale del timer in secondi
-    let remainingTime = totalTime; // Tempo rimanente
-    
-    // Crea il grafico iniziale
-    const chart = new Chart(ctx, {
-      type: "doughnut",
-      data: {
-        labels: ["Tempo trascorso","Tempo rimanente"],
-        datasets: [
-          {
-            label: "Timer",
-            data: [remainingTime, totalTime - remainingTime],
-            backgroundColor: ["#e0e0e0","#00FFFF"],
-            borderWidth: 0, // Nessun bordo
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        cutout: "70%", // Per creare un anello più spesso
-        plugins: {
-          legend: {
-            display: false, // Nascondi legenda
-          },
-          tooltip: {
-            enabled: false, // Nascondi tooltip
-          },
-        },
-      },
-    });
-    
-    // Aggiorna il grafico ogni secondo
-    const interval = setInterval(() => {
-      remainingTime--;
-    
-      // Aggiorna i dati del grafico
-      chart.data.datasets[0].data = [remainingTime, totalTime - remainingTime];
-      chart.update();
-    
-      // Controlla se il timer è terminato
-      if (remainingTime <= 0) {
-        clearInterval(interval);
-        console.log("Tempo scaduto!");
-      }
-    }, 1000);}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //Protototipi ed idee
-
-
-  // const data = {
-      
-    //   datasets: [
-    //     {
-    //       label: 'Test Results',
-    //       data: [percentWrong,percentCorrect],
-    //       // backgroundColor: [
-    //       //   // percentCorrect >= 80 ? '#00FFFF' : '#00FFFF', // Verde se il punteggio è 80% o più
-    //       //   // percentWrong >= 80 ? '#c2128c' : '#c2128c'    // Rosso se le risposte errate sono più del 80%
-    //       //   percentCorrect= '#c2128c',
-    //       //   percentWrong=   '#00FFFF'
-    //       // ],
-    //       backgroundColor: [
-    //         '#c2128c', // Rosa per le risposte sbagliate
-    //         '#00FFFF'  // Azzurro per le risposte corrette
-    //       ],
-    //     }
-    //   ]
-    // };
-  //   const ctx = document.getElementById('myChart').getContext('2d');
-  //   new Chart(ctx, {
-  //     type: 'doughnut',
-  //     data: data,
-  //     options: {
-  //       responsive: true,
-  //       maintainAspectRatio: true,
-  //       borderWidth: 0,
-  //       cutout: "75%",
-  //       plugins: {
-          
-  //         centerTextPlugin: {
-  //           id: 'centerText',
-  //           beforeDraw: (chart) => {
-  //               const {width} = chart;
-  //               const {height} = chart;
-  //               const ctx = chart.ctx;
-
-  //               ctx.save();
-
-  //               // Imposta lo stile del testo
-  //               ctx.font = '20px Arial';
-  //               ctx.fillStyle = 'black';
-  //               ctx.textAlign = 'center';
-  //               ctx.textBaseline = 'middle';
-
-  //               // Calcola le coordinate del centro
-  //               const centerX = width / 2;
-  //               const centerY = height / 2;
-
-  //               // Testo da visualizzare
-  //               const text = 'Ciao, Chart.js!';
-
-  //               // Disegna il testo al centro
-  //               ctx.fillText(text, centerX, centerY);
-
-  //               ctx.restore();
-  //           }
-        
-  //         }
-  //       }
-  //     }
-  //   });
-  // Funzione per creare la ciambella
+  
   function ciambellTimer() {
     const ctx = document.getElementById("timerChart").getContext("2d");
   
@@ -692,12 +559,12 @@ function rateUs() {
     chart = new Chart(ctx, {
       type: "doughnut",
       data: {
-        labels: ["Tempo trascorso", "Tempo rimanente"], // Inverti i label per coerenza
+        labels: ["Tempo trascorso","Tempo rimanente" ], // Inverti i label per coerenza
         datasets: [
           {
             label: "Timer",
             data: [totalTime - remainingTime, remainingTime], // Inverti i dati
-            backgroundColor: ["#e0e0e0", "#00FFFF"], // Inverti i colori
+            backgroundColor: getColors(), // Inverti i colori
             borderWidth: 0, // Nessun bordo
           },
         ],
@@ -705,7 +572,8 @@ function rateUs() {
       options: {
         responsive: true,
         cutout: "70%", // Per creare un anello più spesso
-        rotation: -Math.PI / 2, // Inizia dall'alto e scende in senso antiorario
+        rotation: Math.PI / 2, // Inizia dall'alto e scende in senso antiorario
+        
         plugins: {
           legend: {
             display: false, // Nascondi legenda
@@ -718,10 +586,22 @@ function rateUs() {
     });
   }
   
-  // Funzione per aggiornare il grafico
-  function aggiornaCiambella(remainingTime, totalTime) {
+  
+
+  function aggiornaCiambella(remainingTime,totalTime) {
     if (chart) {
-      chart.data.datasets[0].data = [totalTime - remainingTime, remainingTime]; // Inverti i dati
+      chart.data.datasets[0].data = [totalTime - remainingTime, remainingTime];
+      chart.data.datasets[0].backgroundColor = getColors(remainingTime); // Aggiorna i colori dinamici
       chart.update();
     }
-  }
+    }
+
+    function getColors(remainingTime) {
+      if (remainingTime > 10) {
+        return ["#e0e0e0", "#00FFFF"]; // Azzurro se il tempo rimanente è maggiore di 10
+      } else if (remainingTime > 5) {
+        return ["#e0e0e0", "orange"]; // Arancione se il tempo rimanente è tra 5 e 10
+      } else {
+        return ["#e0e0e0", "red"]; // Rosso se il tempo rimanente è inferiore a 5
+      }
+      }
