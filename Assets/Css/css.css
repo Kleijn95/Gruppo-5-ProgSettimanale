@@ -406,6 +406,7 @@ section #wrong{
     color: red;
     font-weight: bold;
     background-color: #fff5f5;
+    font-family: "OutFit";
     border: 1px solid red;
     border-radius: 5px;
     padding: 5px 10px;
@@ -416,4 +417,106 @@ section #wrong{
     white-space: nowrap; /* Impedisce che il testo vada a capo */
 }
   
+
+  .canvas {
+    width: 30%;
+   
+  }
+
+.section-container {
+    position: relative;
+    bottom: 100px;
+}
+
+.result-element {
+    position: relative;
+    left: 620px;
+    bottom: 300px;
+}
+.correct-element{
+    position: relative;
+    left: 300px;
+    bottom: 30px;
+}
+#punteggioPercentuale{
+    position: relative;
+    top: 20px;
+    font-size: 90px;
+    font-weight: bold;
+}
+#score{
+    position: relative;
+    top: 20px;
+    left: 20px;
+    font-size: 25px;
+}
+.wrong-element{
+    position: relative;
+    left: 1250px;
+    bottom: 680px;
+    
+}
+#risposteErratePercentuale{
+    position: relative;
+    top: 20px;
+    font-size: 90px;
+    font-weight: bold;
+}
+#risposteErrate{
+    position: relative;
+    top: 20px;
+    left: 20px;
+    font-size: 25px;
+}
+#rateUs{
+    position: relative;
+    bottom: 810px;
+    left: 20px;
+    font-size: 30px;
+}
+  
+
+  .contenitoreTempo {
+    position: absolute; /* Per posizionare in alto a destra */
+    top: 50px;
+    right: 50px;
+    width: 200px; /* Larghezza del contenitore */
+    height: 200px; /* Altezza del contenitore */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+
+#timerChart {
+    position: absolute;
+    width: 100%; /* Adatta il canvas al contenitore */
+    height: 100%;
+    z-index: 1; /* Assicurati che il canvas sia sotto il timer */
+}
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
