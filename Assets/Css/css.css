@@ -1,3 +1,12 @@
+body, html, * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Outfit", sans-serif;
+}
 body {
     background-image: url("../img/bg.jpg");
     color: white;
@@ -309,13 +318,16 @@ footer input {
    
 }
 
+.contenitoreTempo{
+    max-width: 10%;
+}
 .timer{
     position: relative;
     z-index: 2;
     font-size: 60px;
     font-family: "Outfit", sans-serif;
-    width: 150px; /* Imposta una larghezza fissa */
-    height: 150px; /* Imposta un'altezza fissa */
+    width: 12%; /* Imposta una larghezza fissa */
+    height: 12%; /* Imposta un'altezza fissa */
    
 }
 .timer {
@@ -324,12 +336,12 @@ footer input {
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 150px;
+    width: 12%;
   }
   
   .pTimer {
     margin: 0;
-    font-size: 12px;
+    font-size: 12%;
   }
 .secondsTimer{
     font-family: "Outfit", sans-serif;
@@ -347,8 +359,80 @@ footer input {
     font-size: 20px
 }
 
+/*body, html, * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-nav h2{
+body {
+    font-family: "Outfit", sans-serif;
+}*/
+
+nav h2 {
+    font-weight: 700;
+    font-size: 3.75rem; /* Use rem for relative units */
+    margin-top: -0.5%;
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+nav h3 {
+    font-weight: 200;
+    font-size: 1.125rem; /* Use rem for relative units */
+    line-height: 1.5rem;
+    text-align: center;
+    padding-bottom: 1.25rem;
+}
+
+section #correct, section #wrong {
+    font-weight: 300;
+    font-size: 3.75rem; /* Use rem for relative units */
+}
+
+.risultato {
+    margin-top: 5%;
+}
+
+#rateUs {
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    padding: 0.625rem 2.5rem; /* Use rem for relative units */
+    border: 0.125rem solid white;
+    cursor: pointer;
+    font-size: 1.2rem; /* Use rem for relative units */
+}
+
+.section-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem; /* Gap between elements */
+}
+
+.correct-element, .wrong-element, .canvas {
+    flex: 1 1 30%; /* Flex-grow, flex-shrink, flex-basis */
+    text-align: center;
+}
+
+#punteggioPercentuale, #risposteErratePercentuale {
+    font-size: 5.625rem; /* Use rem for relative units */
+    font-weight: bold;
+}
+
+#score, #risposteErrate {
+    font-size: 1.5625rem; /* Use rem for relative units */
+}
+
+.canvas {
+    width: 100%; /* Ensure it takes full available width */
+    max-width: 30%; /* Limit the max width */
+}
+
+
+/*nav h2{
     font-weight: 700;
     font-size: 60px;
     margin-top: -1%;
@@ -361,7 +445,7 @@ nav h2{
 
 nav h3 {
     font-weight: 700;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 200;
     font-family: "Outfit", sans-serif;
     line-height: 1.5rem; 
@@ -372,14 +456,14 @@ nav h3 {
 
 section #correct {
     font-weight: 300;
-    font-size: 60px;
+    font-size: 3.75rem;
     font-family: "Outfit", sans-serif;
     
 }
 
 section #wrong{
     font-weight: 300;
-    font-size: 60px;
+    font-size: 3.75rem;
     
     font-family: "Outfit", sans-serif;
     
@@ -395,27 +479,15 @@ section #wrong{
         background-color: transparent;
         color: white;
         font-weight: bold;
-        padding: 10px 40px;
-        border: 2px solid white;
+        padding: 0.625rem 2.5rem;
+        border: 0.125rem solid white;
         cursor: pointer;
         font-size: 1.2rem;
     
 }
 
-#error-msg {
-    color: red;
-    font-weight: bold;
-    background-color: #fff5f5;
-    font-family: "OutFit";
-    border: 1px solid red;
-    border-radius: 5px;
-    padding: 5px 10px;
-    position: absolute;
-    top: 50px; /* Posiziona il messaggio sotto la checkbox */
-    left: 0; /* Allinea il messaggio alla checkbox */
-    z-index: 10;
-    white-space: nowrap; /* Impedisce che il testo vada a capo */
-}
+
+
   
 
   .canvas {
@@ -473,7 +545,7 @@ section #wrong{
     bottom: 810px;
     left: 20px;
     font-size: 30px;
-}
+}*/
   
 
   .contenitoreTempo {
@@ -495,7 +567,20 @@ section #wrong{
     z-index: 1; /* Assicurati che il canvas sia sotto il timer */
 }
 
-
+#error-msg {
+    color: red;
+    font-weight: bold;
+    background-color: #fff5f5;
+    font-family: "OutFit";
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 5px 10px;
+    position: absolute;
+    top: 50px; /* Posiziona il messaggio sotto la checkbox */
+    left: 0; /* Allinea il messaggio alla checkbox */
+    z-index: 10;
+    white-space: nowrap; /* Impedisce che il testo vada a capo */
+}
 
 
 
