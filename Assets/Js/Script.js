@@ -133,6 +133,7 @@ if (document.location.pathname === "/Test.html") {
   createDomanda(questions)                                
   createRisposte();
   startTimer()
+  ciambellTimer()
 }
 
 // Funzioni Pagina RUSULTS
@@ -157,28 +158,33 @@ if (document.location.pathname === "/Results.html") {
 function proceed() {
   let checkBox = document.querySelector("#promise");
   let buttonProceed = document.querySelector(".proceed");
-  
-  buttonProceed.addEventListener("click", function() {
-    let errorMsg = document.querySelector("#error-msg");
 
-    
-    if (errorMsg) {       // Rimuovi il messaggio di errore precedente, se mostrato
-      errorMsg.remove();
-    }
-    
-    if (checkBox.checked) {
-      window.location.href = "http://127.0.0.1:5500/Test.html";
-    } else {
-      
-      let spanMe = document.createElement("span"); // Crea un nuovo elemento span per il messaggio di errore
-      spanMe.id = "error-msg";
-      spanMe.textContent = "Spunta la checkbox";
-      
-      checkBox.parentNode.appendChild(spanMe);// Aggiungi il messaggio di errore accanto alla checkbox
-    }
+  buttonProceed.addEventListener("click", function () {
+      // Rimuovi eventuali alert precedenti
+      let errorMsg = document.querySelector("#error-msg");
+      if (errorMsg) {
+          errorMsg.remove();
+      }
+
+      // Controlla se la checkbox è spuntata
+      if (checkBox.checked) {
+          window.location.href = "http://127.0.0.1:5500/Test.html";
+      } else {
+          // Crea l'alert accanto alla checkbox
+          let alertBox = document.createElement("div");
+          alertBox.id = "error-msg";
+          alertBox.textContent = "Spunta la checkbox!";
+          checkBox.parentNode.appendChild(alertBox);
+
+          // Rimuovi l'alert dopo 3 secondi
+          setTimeout(() => {
+              alertBox.remove();
+          }, 3000);
+      }
   });
 }
 
+// Inizializza la funzione
 
 
 // Pagina TEST
@@ -619,43 +625,53 @@ function rateUs() {
   //       }
   //     }
   //   });
-
-
-
-  /*function proceed() {
-  let checkBox = document.querySelector("#promise")
-  let buttonProceed = document.querySelector(".proceed")
-  buttonProceed.addEventListener("click", function(){
-    if (checkBox.checked) {
-    window.location.href = "http://127.0.0.1:5500/Test.html"}
-    else {
-      let span = document.createElement("span");
-      span.id = "error-msg"; 
-      span.style.color = "red"; 
-      span.style.marginLeft = "10px"; 
-      span.textContent = "Spunta la checkbox";
-    }
-  })
-}*/
-
-
-/*
-  console.log(domande)// qui abbiamo l'array con l'elenco delle domande
-  console.log(risposteEsatte)
-  console.log(risposteSbagliate)
-  console.log(tutteLeRisposte)*/
-
-
-// function bottoneProsegui() {
-  
-//   if (currentQuestionIndex === 9 || timerDuration === 0) {
-//     let footer = document.querySelector("footer")
-//     let button = document.createElement("button")
-//     button.innerText = "Prosegui"
-//     button.classList.add("btn-prosegui")
-//     footer.appendChild(button)
-//     console.dir (button)
-//     }
+  function ciambellTimer() {
     
-// }
-// bottoneProsegui()
+   
+  const ctx = document.getElementById("timerChart").getContext("2d");
+
+let totalTime = 60; // Tempo totale del timer in secondi
+let remainingTime = totalTime; // Tempo rimanente
+
+// Crea il grafico iniziale
+const chart = new Chart(ctx, {
+  type: "doughnut",
+  data: {
+    labels: ["Tempo rimanente", "Tempo trascorso"],
+    datasets: [
+      {
+        label: "Timer",
+        data: [remainingTime, totalTime - remainingTime],
+        backgroundColor: ["#00FFFF", "#e0e0e0"],
+        borderWidth: 0, // Nessun bordo
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    cutout: "70%", // Per creare un anello più spesso
+    plugins: {
+      legend: {
+        display: false, // Nascondi legenda
+      },
+      tooltip: {
+        enabled: false, // Nascondi tooltip
+      },
+    },
+  },
+});
+
+// Aggiorna il grafico ogni secondo
+const interval = setInterval(() => {
+  remainingTime--;
+
+  // Aggiorna i dati del grafico
+  chart.data.datasets[0].data = [remainingTime, totalTime - remainingTime];
+  chart.update();
+
+  // Controlla se il timer è terminato
+  if (remainingTime <= 0) {
+    clearInterval(interval);
+    console.log("Tempo scaduto!");
+  }
+}, 1000);}
