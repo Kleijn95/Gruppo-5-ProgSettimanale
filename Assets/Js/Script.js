@@ -685,44 +685,43 @@ function rateUs() {
   //     }
   //   });
   // Funzione per creare la ciambella
-function ciambellTimer() {
-  const ctx = document.getElementById("timerChart").getContext("2d");
-
-  // Crea il grafico iniziale
-  chart = new Chart(ctx, {
-    type: "doughnut",
-    data: {
-      labels: ["Tempo rimanente", "Tempo trascorso"],
-      datasets: [
-        {
-          label: "Timer",
-          data: [remainingTime, totalTime - remainingTime],
-          backgroundColor: ["#00FFFF", "#e0e0e0"],
-          borderWidth: 0, // Nessun bordo
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      cutout: "70%", // Per creare un anello più spesso
-     
-      
-      plugins: {
-        legend: {
-          display: false, // Nascondi legenda
-        },
-        tooltip: {
-          enabled: false, // Nascondi tooltip
+  function ciambellTimer() {
+    const ctx = document.getElementById("timerChart").getContext("2d");
+  
+    // Crea il grafico iniziale
+    chart = new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: ["Tempo trascorso", "Tempo rimanente"], // Inverti i label per coerenza
+        datasets: [
+          {
+            label: "Timer",
+            data: [totalTime - remainingTime, remainingTime], // Inverti i dati
+            backgroundColor: ["#e0e0e0", "#00FFFF"], // Inverti i colori
+            borderWidth: 0, // Nessun bordo
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        cutout: "70%", // Per creare un anello più spesso
+        rotation: -Math.PI / 2, // Inizia dall'alto e scende in senso antiorario
+        plugins: {
+          legend: {
+            display: false, // Nascondi legenda
+          },
+          tooltip: {
+            enabled: false, // Nascondi tooltip
+          },
         },
       },
-    },
-  });
-}
-
-// Funzione per aggiornare il grafico
-function aggiornaCiambella(remainingTime, totalTime) {
-  if (chart) {
-    chart.data.datasets[0].data = [remainingTime, totalTime - remainingTime];
-    chart.update();
+    });
   }
-}
+  
+  // Funzione per aggiornare il grafico
+  function aggiornaCiambella(remainingTime, totalTime) {
+    if (chart) {
+      chart.data.datasets[0].data = [totalTime - remainingTime, remainingTime]; // Inverti i dati
+      chart.update();
+    }
+  }
