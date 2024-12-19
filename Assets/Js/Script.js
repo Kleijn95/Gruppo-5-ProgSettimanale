@@ -563,12 +563,12 @@ function rateUs() {
     const chart = new Chart(ctx, {
       type: "doughnut",
       data: {
-        labels: ["Tempo rimanente", "Tempo trascorso"],
+        labels: ["Tempo trascorso","Tempo rimanente"],
         datasets: [
           {
             label: "Timer",
             data: [remainingTime, totalTime - remainingTime],
-            backgroundColor: ["#00FFFF", "#e0e0e0"],
+            backgroundColor: ["#e0e0e0","#00FFFF"],
             borderWidth: 0, // Nessun bordo
           },
         ],
