@@ -1,2 +1,63 @@
 Bella raga
 Bella sono Manuel
+
+function ciambellTimer() {
+  const ctx = document.getElementById("timerChart").getContext("2d");
+
+  // Crea il grafico iniziale
+  chart = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Tempo rimanente", "Tempo trascorso"],
+      datasets: [
+        {
+          label: "Timer",
+          data: [remainingTime, totalTime - remainingTime],
+          backgroundColor: getColors(remainingTime),
+          borderWidth: 0, // Nessun bordo
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      cutout: "70%", // Per creare un anello più spesso
+     
+      
+      plugins: {
+        legend: {
+          display: false, // Nascondi legenda
+        },
+        tooltip: {
+          enabled: false, // Nascondi tooltip
+        },
+      },
+    },
+  });
+}
+
+// Funzione per aggiornare il grafico
+function aggiornaCiambella(remainingTime, totalTime) {
+  if (chart) {
+    chart.data.datasets[0].data = [remainingTime, totalTime - remainingTime];
+    chart.update();
+  }
+}
+
+function aggiornaCiambella(remainingTime, totalTime) {
+  if (chart) {
+    chart.data.datasets[0].data = [remainingTime, totalTime - remainingTime];
+    chart.data.datasets[0].backgroundColor = getColors(remainingTime); // Aggiorna i colori dinamici
+    chart.update();
+  }
+}
+
+// Funzione per determinare i colori dinamici
+function getColors(remainingTime) {
+  if (remainingTime > 10) {
+    return ["#00FFFF", "#e0e0e0"]; // Azzurro se il tempo rimanente è maggiore di 10
+  } else if (remainingTime > 5) {
+    return ["orange", "#e0e0e0"]; // Arancione se il tempo rimanente è tra 5 e 10
+  } else {
+    return ["red", "#e0e0e0"]; // Rosso se il tempo rimanente è inferiore a 5
+  }
+}
