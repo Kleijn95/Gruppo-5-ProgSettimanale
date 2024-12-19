@@ -12,10 +12,14 @@ body {
     margin: auto 0;
     font-family: "Outfit", sans-serif;
 }
+#welcome {
+    margin: 0 10%;
+}
 
 header {
     display: inline-block;
-    width: 40%;
+    width: 45%;
+    padding: 0.25rem;
 }
 
 header .logo {
