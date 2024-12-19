@@ -170,27 +170,33 @@ function rateUs() {
 function proceed() {
   let checkBox = document.querySelector("#promise");
   let buttonProceed = document.querySelector(".proceed");
-  
-  buttonProceed.addEventListener("click", function() {
-    let errorMsg = document.querySelector("#error-msg");
 
-    
-    if (errorMsg) {       // Rimuovi il messaggio di errore precedente, se mostrato
-      errorMsg.remove();
-    }
-    
-    if (checkBox.checked) {
-      window.location.href = "http://127.0.0.1:5500/Test.html";
-    } else {
-      
-      let spanMe = document.createElement("span"); // Crea un nuovo elemento span per il messaggio di errore
-      spanMe.id = "error-msg";
-      spanMe.textContent = "Spunta la checkbox";
-      
-      checkBox.parentNode.appendChild(spanMe);// Aggiungi il messaggio di errore accanto alla checkbox
-    }
+  buttonProceed.addEventListener("click", function () {
+      // Rimuovi eventuali alert precedenti
+      let errorMsg = document.querySelector("#error-msg");
+      if (errorMsg) {
+          errorMsg.remove();
+      }
+
+      // Controlla se la checkbox è spuntata
+      if (checkBox.checked) {
+          window.location.href = "http://127.0.0.1:5500/Test.html";
+      } else {
+          // Crea l'alert accanto alla checkbox
+          let alertBox = document.createElement("div");
+          alertBox.id = "error-msg";
+          alertBox.textContent = "Spunta la checkbox!";
+          checkBox.parentNode.appendChild(alertBox);
+
+          // Rimuovi l'alert dopo 3 secondi
+          setTimeout(() => {
+              alertBox.remove();
+          }, 3000);
+      }
   });
 }
+
+// Inizializza la funzione
 
 
 
