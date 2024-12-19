@@ -273,6 +273,8 @@ bottoneProsegui()
 
 //Funzione timer
 
+
+
 function startTimer() {
   clearInterval(timer); // Ferma eventuali timer precedenti
   timerDuration = totalTime; // Reset del timer
@@ -301,7 +303,6 @@ function startTimer() {
   }, 1000);
 }
 
-
 //Creazione del bottone allo scadere del tempo o test o completato
 
 function bottoneProsegui() {
@@ -323,7 +324,106 @@ function bottoneProsegui() {
   }
 }
 
+// Crea la ciambella intorno al timer e lo integra
 
+function ciambellTimer() {
+  const ctx = document.getElementById("timerChart").getContext("2d");
+
+  // Crea il grafico iniziale
+  chart = new chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Tempo trascorso", "Tempo rimanente"], // Inverte i label per coerenza
+      datasets: [
+        {
+          label: "Timer",
+          data: [totalTime - remainingTime, remainingTime], // Inverte i dati
+          backgroundColor: ["#e0e0e0", "#00FFFF"], // Inverte i colori
+          borderWidth: 0, // Nessun bordo
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      cutout: "70%", // Per creare un anello più spesso
+      rotation: -Math.PI / 2, // Inizia dall'alto e scende in senso antiorario
+      plugins: {
+        legend: {
+          display: false, // Nasconde legenda
+        },
+        tooltip: {
+          enabled: false, // Nasconde tooltip
+        },
+      },
+    },
+  });
+}
+
+// Funzione per aggiornare il grafico
+function aggiornaCiambella(remainingTime, totalTime) {
+  if (chart) {
+    chart.data.datasets[0].data = [totalTime - remainingTime, remainingTime]; // Inverti i dati
+    chart.update();
+  }
+}
+
+//Temporizza la ciambella
+
+function ciambellTimer() {
+const ctx = document.getElementById("timerChart").getContext("2d");
+
+// Crea il grafico iniziale
+chart = new chart(ctx, {
+  type: "doughnut",
+  data: {
+    labels: ["Tempo rimanente", "Tempo trascorso"],
+    datasets: [
+      {
+        label: "Timer",
+        data: [remainingTime, totalTime - remainingTime],
+        backgroundColor: getColors(remainingTime),
+        borderWidth: 0, // Nessun bordo
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    cutout: "70%", // Per creare un anello più spesso
+   
+    
+    plugins: {
+      legend: {
+        display: false, // Nasconde legenda
+      },
+      tooltip: {
+        enabled: false, // Nasconde tooltip
+      },
+    },
+  },
+});
+}
+
+// Funzione per aggiornare il grafico
+
+function aggiornaCiambella(remainingTime, totalTime) {
+if (chart) {
+  chart.data.datasets[0].data = [remainingTime, totalTime - remainingTime];
+  chart.data.datasets[0].backgroundColor = getColors(remainingTime); // Aggiorna i colori dinamici
+  chart.update();
+}
+}
+
+// Colori dinamici
+
+function getColors(remainingTime) {
+if (remainingTime > 10) {
+  return ["#00FFFF", "#e0e0e0"]; // Azzurro se il tempo rimanente è maggiore di 10
+} else if (remainingTime > 5) {
+  return ["orange", "#e0e0e0"]; // Arancione se il tempo rimanente è tra 5 e 10
+} else {
+  return ["red", "#e0e0e0"]; // Rosso se il tempo rimanente è inferiore a 5
+}
+}
 
 
 //Pagina Results
@@ -685,43 +785,4 @@ function rateUs() {
   //     }
   //   });
   // Funzione per creare la ciambella
-  function ciambellTimer() {
-    const ctx = document.getElementById("timerChart").getContext("2d");
   
-    // Crea il grafico iniziale
-    chart = new Chart(ctx, {
-      type: "doughnut",
-      data: {
-        labels: ["Tempo trascorso", "Tempo rimanente"], // Inverti i label per coerenza
-        datasets: [
-          {
-            label: "Timer",
-            data: [totalTime - remainingTime, remainingTime], // Inverti i dati
-            backgroundColor: ["#e0e0e0", "#00FFFF"], // Inverti i colori
-            borderWidth: 0, // Nessun bordo
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        cutout: "70%", // Per creare un anello più spesso
-        rotation: -Math.PI / 2, // Inizia dall'alto e scende in senso antiorario
-        plugins: {
-          legend: {
-            display: false, // Nascondi legenda
-          },
-          tooltip: {
-            enabled: false, // Nascondi tooltip
-          },
-        },
-      },
-    });
-  }
-  
-  // Funzione per aggiornare il grafico
-  function aggiornaCiambella(remainingTime, totalTime) {
-    if (chart) {
-      chart.data.datasets[0].data = [totalTime - remainingTime, remainingTime]; // Inverti i dati
-      chart.update();
-    }
-  }
