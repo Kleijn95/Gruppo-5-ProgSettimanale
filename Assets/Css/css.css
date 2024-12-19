@@ -11,11 +11,14 @@ body {
     background-size: cover;
     margin: auto 0;
     font-family: "Outfit", sans-serif;
+    margin: 0 10%;
 }
+
 
 header {
     display: inline-block;
-    width: 40%;
+    width: 45%;
+    padding: 0.25rem;
 }
 
 header .logo {
@@ -269,7 +272,8 @@ footer input {
           }
 
           .testFooter{
-            width: 90%;
+            
+            
           }
 
           
@@ -287,7 +291,7 @@ footer input {
     font-size: 150%;
     margin: 2rem;
     padding-top: 1rem;
-    
+    padding-left: 10rem;
     
 }
 .bottone{
