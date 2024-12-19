@@ -395,6 +395,57 @@ section #wrong{
    
   }
 
+.section-container {
+    position: relative;
+    bottom: 100px;
+}
+
+.result-element {
+    position: relative;
+    left: 620px;
+    bottom: 300px;
+}
+.correct-element{
+    position: relative;
+    left: 300px;
+    bottom: 30px;
+}
+#punteggioPercentuale{
+    position: relative;
+    top: 20px;
+    font-size: 90px;
+    font-weight: bold;
+}
+#score{
+    position: relative;
+    top: 20px;
+    left: 20px;
+    font-size: 25px;
+}
+.wrong-element{
+    position: relative;
+    left: 1250px;
+    bottom: 680px;
+    
+}
+#risposteErratePercentuale{
+    position: relative;
+    top: 20px;
+    font-size: 90px;
+    font-weight: bold;
+}
+#risposteErrate{
+    position: relative;
+    top: 20px;
+    left: 20px;
+    font-size: 25px;
+}
+#rateUs{
+    position: relative;
+    bottom: 810px;
+    left: 20px;
+    font-size: 30px;
+}
   
 
   .contenitoreTempo {
