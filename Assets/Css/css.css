@@ -346,21 +346,16 @@ nav h3 {
 section #correct {
     font-weight: 300;
     font-size: 60px;
-    margin-top: -1%;
     font-family: "Outfit", sans-serif;
-    padding-bottom: 2rem;
-    padding-bottom: 0;
-    float: left;
+    
 }
 
 section #wrong{
     font-weight: 300;
     font-size: 60px;
-    margin-right: 10%;
+    
     font-family: "Outfit", sans-serif;
-    padding-bottom: 2rem;
-    padding-bottom: 0;
-    float: right;
+    
 
 }
 
@@ -390,7 +385,7 @@ section #wrong{
 
   .canvas {
     width: 30%;
-   margin: auto;
+   
   }
 
   
