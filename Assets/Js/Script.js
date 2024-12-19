@@ -539,9 +539,56 @@ function rateUs() {
 
   
 
-
-
-
+    function ciambellTimer() {
+    
+   
+      const ctx = document.getElementById("timerChart").getContext("2d");
+    
+    let totalTime = 60; // Tempo totale del timer in secondi
+    let remainingTime = totalTime; // Tempo rimanente
+    
+    // Crea il grafico iniziale
+    const chart = new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: ["Tempo rimanente", "Tempo trascorso"],
+        datasets: [
+          {
+            label: "Timer",
+            data: [remainingTime, totalTime - remainingTime],
+            backgroundColor: ["#00FFFF", "#e0e0e0"],
+            borderWidth: 0, // Nessun bordo
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        cutout: "70%", // Per creare un anello più spesso
+        plugins: {
+          legend: {
+            display: false, // Nascondi legenda
+          },
+          tooltip: {
+            enabled: false, // Nascondi tooltip
+          },
+        },
+      },
+    });
+    
+    // Aggiorna il grafico ogni secondo
+    const interval = setInterval(() => {
+      remainingTime--;
+    
+      // Aggiorna i dati del grafico
+      chart.data.datasets[0].data = [remainingTime, totalTime - remainingTime];
+      chart.update();
+    
+      // Controlla se il timer è terminato
+      if (remainingTime <= 0) {
+        clearInterval(interval);
+        console.log("Tempo scaduto!");
+      }
+    }, 1000);}
 
 
 
@@ -625,53 +672,3 @@ function rateUs() {
   //       }
   //     }
   //   });
-  function ciambellTimer() {
-    
-   
-  const ctx = document.getElementById("timerChart").getContext("2d");
-
-let totalTime = 60; // Tempo totale del timer in secondi
-let remainingTime = totalTime; // Tempo rimanente
-
-// Crea il grafico iniziale
-const chart = new Chart(ctx, {
-  type: "doughnut",
-  data: {
-    labels: ["Tempo rimanente", "Tempo trascorso"],
-    datasets: [
-      {
-        label: "Timer",
-        data: [remainingTime, totalTime - remainingTime],
-        backgroundColor: ["#00FFFF", "#e0e0e0"],
-        borderWidth: 0, // Nessun bordo
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    cutout: "70%", // Per creare un anello più spesso
-    plugins: {
-      legend: {
-        display: false, // Nascondi legenda
-      },
-      tooltip: {
-        enabled: false, // Nascondi tooltip
-      },
-    },
-  },
-});
-
-// Aggiorna il grafico ogni secondo
-const interval = setInterval(() => {
-  remainingTime--;
-
-  // Aggiorna i dati del grafico
-  chart.data.datasets[0].data = [remainingTime, totalTime - remainingTime];
-  chart.update();
-
-  // Controlla se il timer è terminato
-  if (remainingTime <= 0) {
-    clearInterval(interval);
-    console.log("Tempo scaduto!");
-  }
-}, 1000);}
