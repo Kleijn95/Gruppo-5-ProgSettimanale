@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +8,28 @@
     <link rel="stylesheet" href="./Assets/Css/reset.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet"  href="./Assets/Css/css.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./Assets/Css/css.css">
 </head>
+
 <body>
     <header>
         <div class="logo"></div>
-            
+
+        <div class="contenitoreTempo"> <canvas id="timerChart" width="400" height="400"></canvas>
             <div class="timer"></div>
-        
+        </div>
     </header>
     <main>
         <div class="questions"></div>
         <div class="buttonContainer"> </div>
     </main>
     <footer class="testFooter">
-       
+
         <p id="questionNum">---</p>
 
 
@@ -31,4 +37,5 @@
     </footer>
     <script src="./Assets/Js/Script.js"></script>
 </body>
+
 </html>
