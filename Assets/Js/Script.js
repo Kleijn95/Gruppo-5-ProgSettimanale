@@ -101,17 +101,20 @@ const questions = [
 
 
 //Dichiarazione delle variabili
-const domande=[];
-const risposteEsatte=[];
-const risposteSbagliate=[];
-const tutteLeRisposte=[];  //Questo contiene tutte le risposte
+const domande = [];
+const risposteEsatte = [];
+const risposteSbagliate = [];
+const tutteLeRisposte = []; // Questo contiene tutte le risposte
 let currentQuestionIndex = 0;
 let currentAnswerIndex = 0;
 let score = 0;
-let timer;
-let timerDuration= 60;
-let punteggio = localStorage.getItem("score")
-punteggio = parseInt(punteggio);
+let chart; // Variabile globale per il grafico della ciambella
+let timer; // Variabile globale per il timer
+const totalTime = 60; // Tempo totale del timer
+let timerDuration = totalTime; // Tempo iniziale del timer
+let remainingTime = timerDuration; // Tempo rimanente
+let punteggio = localStorage.getItem("score");
+punteggio = parseInt(punteggio) || 0; // Gestione punteggio se non definito
 let risultatoA = punteggioPercentuale();
 let risultatoB = risposteErrate();
 let risultatoC = risposteErratePercentuale();
@@ -271,22 +274,31 @@ bottoneProsegui()
 //Funzione timer
 
 function startTimer() {
-clearInterval(timer)
-timerDuration= 60;
-let tempo = document.querySelector('.timer')
-tempo.innerHTML = `<p class="pTimer">SECONDS</p>
-${timerDuration}
-<p class="pTimer">REMAINING</p>`
-timer = setInterval(function() {
-timerDuration--;
-document.querySelector('.timer').innerHTML = `<p class="pTimer">SECONDS</p>
-${timerDuration}
-<p class="pTimer">REMAINING</p>`
-if (timerDuration<=0) {
-clearInterval(timer)
-checkAnswer();
-}
-}, 1000)
+  clearInterval(timer); // Ferma eventuali timer precedenti
+  timerDuration = totalTime; // Reset del timer
+  remainingTime = timerDuration; // Sincronizza la ciambella
+  aggiornaCiambella(remainingTime, totalTime); // Aggiorna il grafico
+
+  let tempo = document.querySelector('.timer');
+  tempo.innerHTML = `<p class="pTimer">SECONDS</p>
+  ${timerDuration}
+  <p class="pTimer">REMAINING</p>`;
+
+  timer = setInterval(function () {
+    timerDuration--;
+    remainingTime = timerDuration; // Sincronizza il tempo rimanente
+    aggiornaCiambella(remainingTime, totalTime); // Aggiorna il grafico
+
+    document.querySelector('.timer').innerHTML = `<p class="pTimer">SECONDS</p>
+    ${timerDuration}
+    <p class="pTimer">REMAINING</p>`;
+
+    if (timerDuration <= 0) {
+      clearInterval(timer);
+      console.log("Tempo scaduto!");
+      checkAnswer(); // Funzione da eseguire quando il timer termina
+    }
+  }, 1000);
 }
 
 
@@ -672,3 +684,45 @@ function rateUs() {
   //       }
   //     }
   //   });
+  // Funzione per creare la ciambella
+function ciambellTimer() {
+  const ctx = document.getElementById("timerChart").getContext("2d");
+
+  // Crea il grafico iniziale
+  chart = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Tempo rimanente", "Tempo trascorso"],
+      datasets: [
+        {
+          label: "Timer",
+          data: [remainingTime, totalTime - remainingTime],
+          backgroundColor: ["#00FFFF", "#e0e0e0"],
+          borderWidth: 0, // Nessun bordo
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      cutout: "70%", // Per creare un anello più spesso
+     
+      
+      plugins: {
+        legend: {
+          display: false, // Nascondi legenda
+        },
+        tooltip: {
+          enabled: false, // Nascondi tooltip
+        },
+      },
+    },
+  });
+}
+
+// Funzione per aggiornare il grafico
+function aggiornaCiambella(remainingTime, totalTime) {
+  if (chart) {
+    chart.data.datasets[0].data = [remainingTime, totalTime - remainingTime];
+    chart.update();
+  }
+}
