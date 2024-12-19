@@ -230,47 +230,24 @@ function results() {
 
 function esitoTest() {
 let esito = document.querySelector("#esito")
-if (punteggio>=6){
-// {let a = document.createElement("p")
-//  let b = document.createElement("p")
-//  let c = document.createElement("p")
-// a.innerText="Congratulations!"
-// b.innerText= "You passed the exam."
-// c.innerText= `We'll send you the certificate
-// in few minutes.
-// Check your email (including 
-// promotions / spam folder)`
-// a.classList.add("paragrafo1")
-// b.classList.add("paragrafo2")
-// c.classList.add("paragrafo3")
-// esito.appendChild(a);
-// esito.appendChild(b);
-// esito.appendChild(c);
-return `Congratulations!
-You passed the exam.
-
-We'll send you the certificate
- in few minutes.
- Check your email (including
- promotion/spam folder)
- 
- 
- `;
-}
-else {return `Unlucky!\nYou didn't pass the exam.\nBut you can try to do it again soon!`;
-// else {let d = document.createElement("p")
-//   let e = document.createElement("p")
-//   let f = document.createElement("p")
-//   d.innerText="Unlucky!"
-//   e.innerText= "You didn't pass the exam."
-//   f.innerText= `But you can try to do it again soon!`
-//   esito.appendChild(d);
-//   esito.appendChild(e);
-//   esito.appendChild(f);
-  
+if (punteggio >= 6) {
+  return [
+      "Congratulations!",           // Prima riga (bianco, grassetto)
+      "You passed the exam.",       // Seconda riga (rosso, grassetto)
+      
+      "We'll send you the certificate", // Testo normale (bianco)
+      "in a few minutes.",          // Testo normale (bianco)
+      "Check your email (including", // Testo normale (bianco)
+      "promotion/spam folder)."     // Testo normale (bianco)
+  ];
+} else {
+  return [
+      "Unlucky!",                   // Prima riga (bianco, grassetto)
+      "You didn't pass the exam.",  // Seconda riga (bianco, normale)
+      "But you can try again soon!" // Testo normale (bianco)
+  ];
 }
 }
-
 
 
 
@@ -472,30 +449,67 @@ function bottoneProsegui() {
   const centerTextPlugin = {
     id: 'centerText',
     beforeDraw: (chart) => {
-        const {width, height, ctx} = chart;
-        ctx.save();
+      const { width, height, ctx } = chart;
+      ctx.save();
 
-        // Imposta lo stile del testo
-        ctx.font = '20px Outfit, sans-serif';
-        ctx.fillStyle = 'white';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
+      // Calcola il centro del grafico
+      const centerX = width / 2;
+      const centerY = height / 2;
 
-        // Calcola il centro del grafico
-        const centerX = width / 2;
-        const centerY = height / 2;
+      // Ottieni il testo e la formattazione in base al punteggio
+       // Sostituisci con il punteggio dinamico
+      const lines = esitoTest(punteggio);
 
-        // Testo da visualizzare
-        const esitoText = esitoTest(); // Ottieni il testo dalla funzione esitoTest()
-        const lines = esitoText.split("\n");
+      // Imposta lo stile e la posizione del testo
+      let offsetY = -30; // Offset iniziale per il primo testo
 
-        // Stampa il testo riga per riga
-        lines.forEach((line, index) => {
-            ctx.fillText(line, centerX, centerY - 10 + (index * 20));
-        });
+      // Disegna ogni riga con stili diversi
+      lines.forEach((line, index) => {
+          if (punteggio >= 6) {
+              // Test superato
+              if (index === 0) {
+                  // Prima riga: Grassetto bianco
+                  ctx.font = "bold 20px Outfit, sans-serif";
+                  ctx.fillStyle = "white";
+                  
+              } else if (index === 1) {
+                  // Seconda riga: Grassetto rosso
+                  ctx.font = "bold 20px Outfit, sans-serif";
+                  ctx.fillStyle = "#00FFFF";
+                  
+              } else {
+                  // Testo normale, dimensione più piccola
+                  ctx.font = "14px Outfit, sans-serif";
+                  ctx.fillStyle = "white";
+                  
+              }
+          } else {
+              // Test non superato
+              if (index === 0) {
+                  // Prima riga: Grassetto bianco
+                  ctx.font = "bold 20px Outfit, sans-serif";
+                  ctx.fillStyle = "white";
+              } else {
+                  // Testo normale, dimensione più piccola
+                  ctx.font = "16px Outfit, sans-serif";
+                  ctx.fillStyle = "white";
+              }
+          }
 
-        ctx.restore();
-    }
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText(line, centerX, centerY + offsetY);
+
+          // Aggiungi uno spazio maggiore solo dopo la seconda riga (You passed the exam.)
+  if (index === 1 && punteggio >= 6) {
+    offsetY += 30; // Aggiungi uno spazio maggiore dopo la seconda riga
+} else {
+    offsetY += 20; // Altezza tra le righe per le altre
+}
+});
+
+ctx.restore();
+  }
 };
 
 // Configurazione dei dati del grafico
