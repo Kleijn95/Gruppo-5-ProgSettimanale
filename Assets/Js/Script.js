@@ -248,27 +248,74 @@ for (let i = 0; i < tutteLeRisposte[currentAnswerIndex].length; i++) {
 
 //Verifica Risposte
 
-function checkAnswer(selectedAnswer){
-if( selectedAnswer === risposteEsatte[currentQuestionIndex]){
- score++;
- localStorage.setItem("score", score)
+/*function checkAnswer(selectedAnswer){
+  let feedbackMessage = document.createElement('div');
+  feedbackMessage.classList.add('feedback-message');
+  if (selectedAnswer === risposteEsatte[currentQuestionIndex]) {
+    score++;
+    localStorage.setItem("score", score);
+    feedbackMessage.innerText = 'Correct!';
+    feedbackMessage.classList.add('correct');
+  } else {
+    feedbackMessage.innerText = 'Incorrect!';
+    feedbackMessage.classList.add('incorrect');
+  }
+  let footer = document.querySelector('.testFooter');
+
+  footer.appendChild(feedbackMessage);
+
+  setTimeout(() => {
+    feedbackMessage.remove();
+    currentAnswerIndex++;
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < domande.length) {
+      createDomanda();
+      createRisposte();
+      startTimer();
+    } else {
+      bottoneProsegui();
+    }
+  }, 500); 
+}*/
+function checkAnswer(selectedAnswer) {
+  // Rimuove eventuali messaggi di feedback esistenti
+  let existingFeedback = document.querySelector('.feedback-message');
+  if (existingFeedback) {
+    existingFeedback.remove();
+  }
+
+  // Crea un nuovo messaggio di feedback
+  let feedbackMessage = document.createElement('div');
+  feedbackMessage.classList.add('feedback-message');
+  if (selectedAnswer === risposteEsatte[currentQuestionIndex]) {
+    score++;
+    localStorage.setItem("score", score);
+    feedbackMessage.innerText = 'Correct!';
+    feedbackMessage.classList.add('correct');
+  } else {
+    feedbackMessage.innerText = 'Incorrect!';
+    feedbackMessage.classList.add('incorrect');
+  }
+
+  let footer = document.querySelector('.testFooter');
+  footer.appendChild(feedbackMessage);
+
+  // Timer per rimuovere il feedback e procedere alla domanda successiva
+  setTimeout(() => {
+    feedbackMessage.remove();
+    currentAnswerIndex++;
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < domande.length) {
+      createDomanda();
+      createRisposte();
+      startTimer();
+    } else {
+      bottoneProsegui();
+    }
+  }, 1000);
 }
-currentAnswerIndex++;
-currentQuestionIndex++;
-
-if(currentQuestionIndex < domande.length){
-    
-createDomanda();
-createRisposte();
-startTimer();
-
-
-}
-else {
-
-bottoneProsegui()
-}
-} 
 
 
 //Funzione timer
