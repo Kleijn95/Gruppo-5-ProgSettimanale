@@ -310,9 +310,10 @@ nav h3 {
 }
 
 section #correct, section #wrong {
-    font-weight: 200;
+    font-weight: 300;
     font-size: 3rem; /* Use rem for relative units */
     padding: 0.1;
+    font-family: "OutFit", sans-serif;  
 }
 
 .risultato {
@@ -345,7 +346,7 @@ padding: 6%;
     background-color: transparent;
     color: white;
     font-weight: bold;
-    padding: 0.25rem 1rem;
+    padding: 1rem 4rem;
     border: 0.125rem solid white;
     cursor: pointer;
     font-size: 1.2rem;
