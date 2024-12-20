@@ -1,3 +1,5 @@
+/*Pagine Comuni*/
+
 body, html, * {
     box-sizing: border-box;
     margin: 0;
@@ -32,41 +34,6 @@ header .logo {
     margin-top: 2rem;
 }
 
-.gradient-text {
-    background: -webkit-linear-gradient(#ff005d, #c700ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-#scatola{
-    display: inline-block;
-    width: 98%;
-    min-height: 15%;
-    margin: 2%;
-    
-    
-    
-}
-
-#rightDiv{
-    display: inline-block;
-    padding: 6%;
-    
-    
-}
-
-
-.canvas{
-display: inline-block;
-padding: 6%;
-
-}
-
-
-#wrongDiv{
-display: inline-block;
-padding: 6%;
-}
 
 section h1 {
     font-weight: 300;
@@ -91,6 +58,15 @@ section p {
     font-weight: 200;
     font-family: "Inter", sans-serif;
     line-height: 1.5rem; 
+}
+
+
+/*Pagina Welcome*/
+
+.gradient-text {
+    background: -webkit-linear-gradient(#ff005d, #c700ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 #istruction {
@@ -140,6 +116,7 @@ span {
     background-color: transparent; /* Questo è per mostrare il check sullo sfondo trasparente*/
 }
 
+
 #promise:checked::before {
     content: '\f00c';
     font-family: 'Font Awesome 5 Free'; /* Importa il font di Font Awesome */
@@ -154,6 +131,22 @@ span {
     font-size: 1rem;
     line-height: 10px; /* Allinea il contenuto verticalmente così che la spunta appare centrata dentro la checkbox */
 }
+
+#error-msg {
+    color: red;
+    font-weight: bold;
+    background-color: #fff5f5;
+    font-family: "OutFit";
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 5px 10px;
+    position: absolute;
+    top: 50px; /* Posiziona il messaggio sotto la checkbox */
+    left: 0; /* Allinea il messaggio alla checkbox */
+    z-index: 10;
+    white-space: nowrap; /* Impedisce che il testo vada a capo */
+}
+
 
 
 .agreement p {
@@ -171,112 +164,14 @@ span {
     border: none;
     cursor: pointer;
     box-shadow: 0px 0px 20px 5px rgba(0, 231, 255, 0.6);
-    margin-left: 10rem;
-    font-size: 1.2rem;
+    margin-left: 25rem;
+    font-size: 1.2rem;  
 }
 
-/* input[type='checkbox'] {
-    clip: rect(1px, 1px, 1px, 1px);
-   
-}
 
-input[type='checkbox'] + label {
-    cursor: pointer;
-}
+/*Pagina Test*/
 
-input[type='checkbox']:checked + label {
-    background-image: url('https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787_1280.png')
-} */
 
-#reviewPage {
-    text-align: center;
-}
-
-#reviewPage h4 {
-    font-size: 2.5em;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    font-family: "Outfit", sans-serif;
-}
-
-#reviewPage p {
-    font-size: 1.3em;
-    margin-bottom: 20px;
-    font-family: "Inter", sans-serif;
-}
-
-textarea {
-    width: 30%;
-
-    margin: 20px auto;
-    color: white;
-    font-family: "Inter", sans-serif;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    border-bottom: 2px solid #ff00ff;
-    font-size: 1rem;
-    resize: none;
-    height: 40px;
-    transition: border-color 0.3s ease;
-    line-height: 40px;
-    padding: 0;
-}
-
-textarea::placeholder {
-    color: #aaaaaa;
-    padding-left: 1rem;
-
-}
-
-footer {
-    text-align: center;
-}
-
-footer input {
-    background-color: #00FFFF;
-    color: black;
-    font-weight: bold;
-    padding: 15px 40px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0px 0px 20px 5px rgba(0, 231, 255, 0.6);
-    font-size: 1.2rem;
-    }   
-    .reviewP {
-        margin-top: 3rem;
-    }
-
-    .stelle img {
-        cursor: pointer;
-        filter: brightness(0.1);}
-
-    .stelle img.active {
-        filter: brightness(1)
-    }
-
-        .btn-prosegui {
-            background-color: #00FFFF;
-    color: black;
-    font-weight: bold;
-    padding: 10px 40px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0px 0px 20px 5px rgba(0, 231, 255, 0.6);
-    margin-top: 1rem;
-    font-size: 1.2rem;
-          }
-          
-          .btn-prosegui:hover {
-            background-color: #ff00ff;
-          }
-
-          .testFooter{
-            
-            
-          }
-
-          
 .questions{
     text-align: center;
     font-size: 350%;
@@ -285,6 +180,51 @@ footer input {
     margin-top: 5rem;
     font-family: "Outfit", sans-serif;
 }
+
+.bottone:active{
+    background: -webkit-linear-gradient(#ff005d, #c700ff);
+   
+}
+
+.contenitoreTempo{
+    max-width: 10%;
+}
+
+.timer{
+    position: relative;
+    z-index: 2;
+    font-size: 60px;
+    font-family: "Outfit", sans-serif;
+    width: 12%; /* Imposta una larghezza fissa */
+    height: 12%; /* Imposta un'altezza fissa */
+   
+}
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 12%;
+}
+  
+.pTimer {
+    margin: 0;
+    font-size: 12%;
+  }
+
+.secondsTimer{
+    font-family: "Outfit", sans-serif;  
+}
+
+#questionNum{
+    margin-top: 5rem;
+    padding-top: 1rem;
+    font-family: "Outfit", sans-serif;
+    font-size: 20px
+}
+
 
 .buttonContainer{
     text-align: center;
@@ -307,66 +247,51 @@ footer input {
     font-size: 20px;
     border: 2px solid;
     border: solid white;
-    border-bottom: solid rgba(255, 255, 255, 0.1) ; 
-    
-    
+    border-bottom: solid rgba(255, 255, 255, 0.1) ;   
 }
 
-.bottone:active{
-    background: -webkit-linear-gradient(#ff005d, #c700ff);
-   
+.btn-prosegui {
+    background-color: #00FFFF;
+    color: black;
+    font-weight: bold;
+    padding: 10px 40px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 5px rgba(0, 231, 255, 0.6);
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+          
+.btn-prosegui:hover {
+    background-color: #ff00ff;
+          }
+
+footer {
+    text-align: center;
 }
 
-.contenitoreTempo{
-    max-width: 10%;
-}
-.timer{
-    position: relative;
-    z-index: 2;
-    font-size: 60px;
-    font-family: "Outfit", sans-serif;
-    width: 12%; /* Imposta una larghezza fissa */
-    height: 12%; /* Imposta un'altezza fissa */
-   
-}
-.timer {
+
+.contenitoreTempo {
+    position: absolute; /* Per posizionare in alto a destra */
+    top: 50px;
+    right: 50px;
+    width: 200px; /* Larghezza del contenitore */
+    height: 200px; /* Altezza del contenitore */
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    width: 12%;
-  }
+}
   
-  .pTimer {
-    margin: 0;
-    font-size: 12%;
-  }
-.secondsTimer{
-    font-family: "Outfit", sans-serif;
-    
-    
+
+#timerChart {
+    position: absolute;
+    width: 100%; /* Adatta il canvas al contenitore */
+    height: 100%;
+    z-index: 1; /* Assicurati che il canvas sia sotto il timer */
 }
 
 
-
-
-#questionNum{
-    margin-top: 5rem;
-    padding-top: 1rem;
-    font-family: "Outfit", sans-serif;
-    font-size: 20px
-}
-
-/*body, html, * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: "Outfit", sans-serif;
-}*/
+/*Pagina Reuslts*/
 
 nav h2 {
     font-weight: 700;
@@ -394,6 +319,28 @@ section #correct, section #wrong {
     margin: 1.5%;
 }
 
+
+#rightDiv{
+    display: inline-block;
+    padding: 6%;  
+}
+
+
+.canvas{
+display: inline-block;
+padding: 6%;
+
+}
+
+
+#wrongDiv{
+display: inline-block;
+padding: 6%;
+}
+
+
+/*Pagina Review*/
+
 #rateUs {
     background-color: transparent;
     color: white;
@@ -402,6 +349,19 @@ section #correct, section #wrong {
     border: 0.125rem solid white;
     cursor: pointer;
     font-size: 1.2rem;
+}
+
+.reviewP {
+    margin-top: 3rem;
+}
+
+.stelle img {
+   cursor: pointer;
+   filter: brightness(0.1);
+}
+
+.stelle img.active {
+   filter: brightness(1)
 }
 
 .section-container {
@@ -431,156 +391,75 @@ section #correct, section #wrong {
     width: 20rem;
 }
 
+#scatola{
+    display: inline-block;
+    width: 98%;
+    min-height: 15%;
+    margin: 2%;   
+}
 
-/*nav h2{
-    font-weight: 700;
-    font-size: 60px;
-    margin-top: -1%;
-    font-family: "Outfit", sans-serif;
-    padding-bottom: 2rem;
+
+
+
+
+
+#reviewPage {
     text-align: center;
-    padding-bottom: 0;
 }
 
-
-nav h3 {
-    font-weight: 700;
-    font-size: 1rem;
-    font-weight: 200;
+#reviewPage h4 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 1rem;
     font-family: "Outfit", sans-serif;
-    line-height: 1.5rem; 
-    text-align: center;
-    padding-bottom: 3%;
-   
 }
 
-section #correct {
-    font-weight: 300;
-    font-size: 3.75rem;
-    font-family: "Outfit", sans-serif;
-    
+#reviewPage p {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    font-family: "Inter", sans-serif;
 }
 
-section #wrong{
-    font-weight: 300;
-    font-size: 3.75rem;
-    
-    font-family: "Outfit", sans-serif;
-    
-
-}
-
-.risultato{
-    margin-top: 20%;
-}
-
-#rateUs{
-    
-        background-color: transparent;
-        color: white;
-        font-weight: bold;
-        padding: 0.625rem 2.5rem;
-        border: 0.125rem solid white;
-        cursor: pointer;
-        font-size: 1.2rem;
-    
-}
-
-
-
-  
-
-  .canvas {
+textarea {
     width: 30%;
-   
-  }
-
-.section-container {
-    position: relative;
-    bottom: 100px;
+    margin: 20px auto;
+    color: white;
+    font-family: "Inter", sans-serif;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #ff00ff;
+    font-size: 1rem;
+    resize: none;
+    height: 40px;
+    transition: border-color 0.3s ease;
+    line-height: 40px;
+    padding: 0;
 }
 
-.result-element {
-    position: relative;
-    left: 620px;
-    bottom: 300px;
+textarea::placeholder {
+    color: #aaaaaa;
+    padding-left: 1rem;
+
 }
-.correct-element{
-    position: relative;
-    left: 300px;
-    bottom: 30px;
-}
-#punteggioPercentuale{
-    position: relative;
-    top: 20px;
-    font-size: 90px;
+
+
+footer input {
+    background-color: #00FFFF;
+    color: black;
     font-weight: bold;
-}
-#score{
-    position: relative;
-    top: 20px;
-    left: 20px;
-    font-size: 25px;
-}
-.wrong-element{
-    position: relative;
-    left: 1250px;
-    bottom: 680px;
-    
-}
-#risposteErratePercentuale{
-    position: relative;
-    top: 20px;
-    font-size: 90px;
-    font-weight: bold;
-}
-#risposteErrate{
-    position: relative;
-    top: 20px;
-    left: 20px;
-    font-size: 25px;
-}
-#rateUs{
-    position: relative;
-    bottom: 810px;
-    left: 20px;
-    font-size: 30px;
-}*/
-  
+    padding: 15px 40px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 5px rgba(0, 231, 255, 0.6);
+    font-size: 1.2rem;
+}   
 
-  .contenitoreTempo {
-    position: absolute; /* Per posizionare in alto a destra */
-    top: 50px;
-    right: 50px;
-    width: 200px; /* Larghezza del contenitore */
-    height: 200px; /* Altezza del contenitore */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-  
 
-#timerChart {
-    position: absolute;
-    width: 100%; /* Adatta il canvas al contenitore */
-    height: 100%;
-    z-index: 1; /* Assicurati che il canvas sia sotto il timer */
-}
 
-#error-msg {
-    color: red;
-    font-weight: bold;
-    background-color: #fff5f5;
-    font-family: "OutFit";
-    border: 1px solid red;
-    border-radius: 5px;
-    padding: 5px 10px;
-    position: absolute;
-    top: 50px; /* Posiziona il messaggio sotto la checkbox */
-    left: 0; /* Allinea il messaggio alla checkbox */
-    z-index: 10;
-    white-space: nowrap; /* Impedisce che il testo vada a capo */
-}
+
+
+
 
 
 
