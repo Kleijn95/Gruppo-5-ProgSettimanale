@@ -174,11 +174,12 @@ span {
 
 .questions{
     text-align: center;
-    font-size: 350%;
+    font-size: 3rem;
     padding: 3rem;
     padding-top: 5rem;
     margin-top: 5rem;
     font-family: "Outfit", sans-serif;
+    
 }
 
 .bottone:active{
@@ -245,9 +246,15 @@ span {
     height: 15%;
     width: 30%;
     font-size: 20px;
-    border: 2px solid;
-    border: solid white;
-    border-bottom: solid rgba(255, 255, 255, 0.1) ;   
+    
+    /* border: solid white;
+    border-bottom: solid rgba(255, 255, 255, 0.1) ;    */
+    border: none; /* Rimuove il bordo */
+    position: relative; /* Necessario per il box-shadow "personalizzato" */
+    box-shadow: 
+        0 -2px 8px 0 rgba(255, 255, 255, 1), /* Bianco intenso sopra */
+        0 -4px 12px 2px rgba(255, 255, 255, 0.5), /* Sfumatura intermedia */
+        0 -6px 16px 4px rgba(255, 255, 255, 0.1); /* Sfumatura finale trasparente */
 }
 
 .btn-prosegui {
