@@ -455,6 +455,23 @@ footer input {
     font-size: 1.2rem;
 }   
 
+.feedback-message {
+    display: block;
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    text-align: center;
+
+  }
+  
+  .feedback-message.correct {
+    background-color: green;
+  }
+  
+  .feedback-message.incorrect {
+    background-color: red;
+  }
 
 
 
